@@ -33,8 +33,8 @@ type
     qryCadSocioCPF: TStringField;
     rg_filtros: TRadioGroup;
     procedure bt_excSoscioClick(Sender: TObject);
-    procedure bt_altSocioClick(Sender: TObject);
     procedure bt_cadSocioClick(Sender: TObject);
+    procedure bt_altSocioClick(Sender: TObject);
     procedure bt_pesqSoscioClick(Sender: TObject);
 
   private
@@ -52,47 +52,59 @@ implementation
 
 uses Udm, U_altSocio, U_novo_alt_Socio;
 
-procedure Tfrm_consultaSocios.bt_altSocioClick(Sender: TObject);
-begin
-
-  if not qryCadSocio.Active then
-    qryCadSocio.Open;
-
-  with Tfrm_novo_alt_Socio.Create(Application) do
-  try
-    frm_novo_alt_Socio.Caption := 'Alteração de Socio';
-    qryCadSocio.Edit;
-    showmodal;
-  finally
-    free;
-  end;
-end;
-
 procedure Tfrm_consultaSocios.bt_cadSocioClick(Sender: TObject);
 begin
 
-   if not qryCadSocio.Active then
+   if not (qryCadSocio.Active)then
     qryCadSocio.Open;
 
    with Tfrm_novo_alt_Socio.Create(Application) do
    try
      frm_novo_alt_Socio.Caption := 'Cadastro de Socio';
-      qryCadSocio.Insert;
+     qryCadSocio.Insert;
      showmodal;
    finally
      free;
    end;
 end;
 
+procedure Tfrm_consultaSocios.bt_altSocioClick(Sender: TObject);
+begin
+
+  if not qryCadSocio.Active and qryCadSocio.IsEmpty then
+    begin
+      //qryCadSocio.Open;
+      ShowMessage('Não possui dados para alteração.');
+      edit_pesquisa.SetFocus;
+    end
+    else begin
+        qryCadSocio.Open;
+        qryCadSocio.Edit;
+      with Tfrm_novo_alt_Socio.Create(Application) do
+      try
+        frm_novo_alt_Socio.Caption := 'Alteração de Socio';
+        showmodal;
+      finally
+        free;
+      end;
+    end;
+end;
+
 procedure Tfrm_consultaSocios.bt_excSoscioClick(Sender: TObject);
 const
   msg = 'Deseja realmente excluir o Socio: ';
 begin
-  if not qryCadSocio.Active then
-     qryCadSocio.Open;
 
-  if MessageDlg(msg+DS.DataSet.FieldByName('Nome').AsString+' ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-     qryCadSocio.Delete;
+  if not qryCadSocio.Active and qryCadSocio.IsEmpty then
+  begin
+     ShowMessage('Não possui dados para exclusão.');
+     edit_pesquisa.SetFocus;
+  end
+  else begin
+      qryCadSocio.Open;
+      if MessageDlg(msg+DS.DataSet.FieldByName('Nome').AsString+' ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+      qryCadSocio.Delete;
+  end;
 end;
 
 procedure Tfrm_consultaSocios.bt_pesqSoscioClick(Sender: TObject);

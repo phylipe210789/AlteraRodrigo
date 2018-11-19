@@ -11,6 +11,7 @@ object frm_novo_alt_Socio: Tfrm_novo_alt_Socio
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   object lb_telSocio: TLabel
@@ -97,7 +98,7 @@ object frm_novo_alt_Socio: Tfrm_novo_alt_Socio
     Width = 254
     Height = 21
     DataField = 'Endereco'
-    DataSource = dmCadastros.dsCadSocio
+    DataSource = DS
     TabOrder = 3
   end
   object bt_cancelSocio: TButton
@@ -124,7 +125,7 @@ object frm_novo_alt_Socio: Tfrm_novo_alt_Socio
     Width = 121
     Height = 21
     DataField = 'Telefone'
-    DataSource = dmCadastros.dsCadSocio
+    DataSource = DS
     TabOrder = 2
   end
   object DBedit_cidSocio: TDBEdit
@@ -133,7 +134,7 @@ object frm_novo_alt_Socio: Tfrm_novo_alt_Socio
     Width = 215
     Height = 21
     DataField = 'Cidade'
-    DataSource = dmCadastros.dsCadSocio
+    DataSource = DS
     TabOrder = 6
   end
   object DBedit_cepSocio: TDBEdit
@@ -142,7 +143,7 @@ object frm_novo_alt_Socio: Tfrm_novo_alt_Socio
     Width = 121
     Height = 21
     DataField = 'CEP'
-    DataSource = dmCadastros.dsCadSocio
+    DataSource = DS
     TabOrder = 8
   end
   object DBedit_ufSocio: TDBEdit
@@ -151,7 +152,7 @@ object frm_novo_alt_Socio: Tfrm_novo_alt_Socio
     Width = 22
     Height = 21
     DataField = 'Estado'
-    DataSource = dmCadastros.dsCadSocio
+    DataSource = DS
     TabOrder = 7
   end
   object DBedit_compSocio: TDBEdit
@@ -160,7 +161,7 @@ object frm_novo_alt_Socio: Tfrm_novo_alt_Socio
     Width = 121
     Height = 21
     DataField = 'Complemento'
-    DataSource = dmCadastros.dsCadSocio
+    DataSource = DS
     TabOrder = 4
   end
   object DBedit_cpfSocio: TDBEdit
@@ -169,7 +170,7 @@ object frm_novo_alt_Socio: Tfrm_novo_alt_Socio
     Width = 121
     Height = 21
     DataField = 'CPF'
-    DataSource = dmCadastros.dsCadSocio
+    DataSource = DS
     TabOrder = 1
   end
   object DBedit_bairroSocio: TDBEdit
@@ -178,7 +179,7 @@ object frm_novo_alt_Socio: Tfrm_novo_alt_Socio
     Width = 150
     Height = 21
     DataField = 'Bairro'
-    DataSource = dmCadastros.dsCadSocio
+    DataSource = DS
     TabOrder = 5
   end
   object DBedit_codSocio: TDBEdit
@@ -186,6 +187,8 @@ object frm_novo_alt_Socio: Tfrm_novo_alt_Socio
     Top = 8
     Width = 24
     Height = 21
+    DataField = 'CodigoSocio'
+    DataSource = DS
     Enabled = False
     TabOrder = 11
   end
@@ -195,7 +198,12 @@ object frm_novo_alt_Socio: Tfrm_novo_alt_Socio
     Width = 219
     Height = 21
     DataField = 'Nome'
-    DataSource = dmCadastros.dsCadSocio
+    DataSource = DS
     TabOrder = 0
+  end
+  object DS: TDataSource
+    DataSet = frm_consultaSocios.qryCadSocio
+    Left = 136
+    Top = 120
   end
 end

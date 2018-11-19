@@ -44,7 +44,6 @@ object frm_consultaSocios: Tfrm_consultaSocios
     ParentColor = False
     ShowCaptions = True
     TabOrder = 1
-    ExplicitWidth = 1030
     object bt_cadSocio: TToolButton
       Left = 0
       Top = 0
@@ -74,7 +73,6 @@ object frm_consultaSocios: Tfrm_consultaSocios
     Height = 69
     Align = alBottom
     TabOrder = 2
-    ExplicitWidth = 653
     object bt_pesqSoscio: TButton
       Left = 424
       Top = 26
@@ -103,9 +101,6 @@ object frm_consultaSocios: Tfrm_consultaSocios
         'C'#243'digo'
         'Nome')
       TabOrder = 2
-      ExplicitLeft = 88
-      ExplicitTop = 16
-      ExplicitHeight = 105
     end
   end
   object DS: TDataSource
@@ -117,7 +112,7 @@ object frm_consultaSocios: Tfrm_consultaSocios
     Left = 336
     Top = 64
     Bitmap = {
-      494C01011C00C001400610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011C00C001440610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
