@@ -1,6 +1,7 @@
 object frm_novo_alt_Socio: Tfrm_novo_alt_Socio
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu]
   ClientHeight = 202
   ClientWidth = 697
   Color = clBtnFace
@@ -12,6 +13,7 @@ object frm_novo_alt_Socio: Tfrm_novo_alt_Socio
   OldCreateOrder = False
   Position = poScreenCenter
   OnClose = FormClose
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object lb_telSocio: TLabel

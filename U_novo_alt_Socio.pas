@@ -36,6 +36,7 @@ type
     procedure bt_salvarSocioClick(Sender: TObject);
     procedure bt_cancelSocioClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -126,6 +127,14 @@ begin
   if DS.State in [dsInsert, dsEdit] then
     DS.DataSet.Cancel;
 
+end;
+
+procedure Tfrm_novo_alt_Socio.FormCreate(Sender: TObject);
+begin
+  if DS.State in [dsEdit] then
+  Caption := 'Alteração de Socio'
+  else
+    Caption := 'Cadastro de Socio';
 end;
 
 end.

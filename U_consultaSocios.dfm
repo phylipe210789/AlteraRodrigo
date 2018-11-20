@@ -4,7 +4,7 @@ object frm_consultaSocios: Tfrm_consultaSocios
   BorderIcons = [biSystemMenu]
   Caption = 'Consulta de Socios'
   ClientHeight = 363
-  ClientWidth = 658
+  ClientWidth = 900
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,7 +18,7 @@ object frm_consultaSocios: Tfrm_consultaSocios
   object DBGrid1: TDBGrid
     Left = 0
     Top = 36
-    Width = 658
+    Width = 900
     Height = 258
     Align = alClient
     DataSource = DS
@@ -32,7 +32,7 @@ object frm_consultaSocios: Tfrm_consultaSocios
   object ToolBar1: TToolBar
     Left = 0
     Top = 0
-    Width = 658
+    Width = 900
     Height = 36
     AutoSize = True
     ButtonHeight = 36
@@ -44,6 +44,7 @@ object frm_consultaSocios: Tfrm_consultaSocios
     ParentColor = False
     ShowCaptions = True
     TabOrder = 1
+    ExplicitWidth = 658
     object bt_cadSocio: TToolButton
       Left = 0
       Top = 0
@@ -69,10 +70,11 @@ object frm_consultaSocios: Tfrm_consultaSocios
   object Panel1: TPanel
     Left = 0
     Top = 294
-    Width = 658
+    Width = 900
     Height = 69
     Align = alBottom
     TabOrder = 2
+    ExplicitWidth = 658
     object bt_pesqSoscio: TButton
       Left = 424
       Top = 26
@@ -112,7 +114,7 @@ object frm_consultaSocios: Tfrm_consultaSocios
     Left = 336
     Top = 64
     Bitmap = {
-      494C01011C00C001440610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011C00C0014C0610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

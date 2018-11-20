@@ -60,7 +60,6 @@ begin
 
    with Tfrm_novo_alt_Socio.Create(Application) do
    try
-     frm_novo_alt_Socio.Caption := 'Cadastro de Socio';
      qryCadSocio.Insert;
      showmodal;
    finally
@@ -82,7 +81,6 @@ begin
         qryCadSocio.Edit;
       with Tfrm_novo_alt_Socio.Create(Application) do
       try
-        frm_novo_alt_Socio.Caption := 'Alteração de Socio';
         showmodal;
       finally
         free;
@@ -92,8 +90,12 @@ end;
 
 procedure Tfrm_consultaSocios.bt_excSoscioClick(Sender: TObject);
 const
+
   msg = 'Deseja realmente excluir o Socio: ';
+
 begin
+
+ try
 
   if not qryCadSocio.Active and qryCadSocio.IsEmpty then
   begin
@@ -105,6 +107,12 @@ begin
       if MessageDlg(msg+DS.DataSet.FieldByName('Nome').AsString+' ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
       qryCadSocio.Delete;
   end;
+
+ except
+
+  MessageDlg('Esse registro possui movimentações e não pode ser excluido', mtError, mbOKCancel, 0);
+
+ end;
 end;
 
 procedure Tfrm_consultaSocios.bt_pesqSoscioClick(Sender: TObject);
