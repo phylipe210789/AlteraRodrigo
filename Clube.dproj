@@ -102,8 +102,8 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="U_cadAtividade.pas">
-            <Form>frm_cadAtividade</Form>
+        <DCCReference Include="U_consultaAtividade.pas">
+            <Form>frm_consultaAtividade</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="U_cadMatriculas.pas">
@@ -131,12 +131,12 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="U_altSocio.pas">
-            <Form>frm_altSocio</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="U_novo_alt_Socio.pas">
             <Form>frm_novo_alt_Socio</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="U_novo_alt_Atividade.pas">
+            <Form>frm_novo_alt_Atividade</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
@@ -161,7 +161,6 @@
                 </Source>
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k210.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp210.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment>

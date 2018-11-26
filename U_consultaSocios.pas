@@ -10,7 +10,7 @@ uses
 
 type
   Tfrm_consultaSocios = class(TForm)
-    DBGrid1: TDBGrid;
+    DBGrid_Socios: TDBGrid;
     DS: TDataSource;
     ToolBar1: TToolBar;
     bt_cadSocio: TToolButton;
@@ -50,7 +50,7 @@ implementation
 
 {$R *.dfm}
 
-uses Udm, U_altSocio, U_novo_alt_Socio;
+uses Udm, U_novo_alt_Socio;
 
 procedure Tfrm_consultaSocios.bt_cadSocioClick(Sender: TObject);
 begin
@@ -125,7 +125,7 @@ begin
   case rg_filtros.ItemIndex of
   0:Begin
       qryCadSocio.SQL.Add(' convert(varchar(10), CodigoSocio) like :codigo order by CodigoSocio');
-      qryCadSocio.Parameters[0].Value := edit_pesquisa.Text;
+      qryCadSocio.Parameters[0].Value := edit_pesquisa.Text+'%';
     end;
   1:Begin
      qryCadSocio.SQL.Add(' Nome like :Nome order by Nome ');
@@ -141,7 +141,7 @@ begin
      edit_pesquisa.SetFocus;
   End
   else
-    DBGrid1.SetFocus;
+    DBGrid_Socios.SetFocus;
 
 end;
 

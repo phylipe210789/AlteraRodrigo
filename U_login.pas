@@ -75,8 +75,8 @@ begin
       begin
           ShowMessage('Login ou Senha incorretos!');
           Edit1.SetFocus;
-          Edit1.Clear;
-          Edit2.Clear;
+          //Edit1.Clear;
+          //Edit2.Clear;
       end
       else
         ModalResult := mrOk;

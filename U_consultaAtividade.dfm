@@ -1,10 +1,10 @@
-object frm_consultaSocios: Tfrm_consultaSocios
+object frm_consultaAtividade: Tfrm_consultaAtividade
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu]
-  Caption = 'Consulta de Socios'
-  ClientHeight = 363
-  ClientWidth = 900
+  Caption = 'Cadastro de Atividades'
+  ClientHeight = 322
+  ClientWidth = 473
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,11 +15,11 @@ object frm_consultaSocios: Tfrm_consultaSocios
   Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 13
-  object DBGrid_Socios: TDBGrid
+  object DBGrid_Atividades: TDBGrid
     Left = 0
     Top = 36
-    Width = 900
-    Height = 258
+    Width = 473
+    Height = 217
     Align = alClient
     DataSource = DS
     TabOrder = 0
@@ -32,7 +32,7 @@ object frm_consultaSocios: Tfrm_consultaSocios
   object ToolBar1: TToolBar
     Left = 0
     Top = 0
-    Width = 900
+    Width = 473
     Height = 36
     AutoSize = True
     ButtonHeight = 36
@@ -44,46 +44,46 @@ object frm_consultaSocios: Tfrm_consultaSocios
     ParentColor = False
     ShowCaptions = True
     TabOrder = 1
-    object bt_cadSocio: TToolButton
+    object bt_cadAtividade: TToolButton
       Left = 0
       Top = 0
       Caption = '&Cadastrar'
       ImageIndex = 0
-      OnClick = bt_cadSocioClick
+      OnClick = bt_cadAtividadeClick
     end
-    object bt_altSocio: TToolButton
+    object bt_altAtividade: TToolButton
       Left = 55
       Top = 0
       Caption = '&Alterar'
       ImageIndex = 1
-      OnClick = bt_altSocioClick
+      OnClick = bt_altAtividadeClick
     end
-    object bt_excSoscio: TToolButton
+    object bt_excAtividade: TToolButton
       Left = 110
       Top = 0
       Caption = '&Excluir'
       ImageIndex = 2
-      OnClick = bt_excSoscioClick
+      OnClick = bt_excAtividadeClick
     end
   end
   object Panel1: TPanel
     Left = 0
-    Top = 294
-    Width = 900
+    Top = 253
+    Width = 473
     Height = 69
     Align = alBottom
     TabOrder = 2
-    object bt_pesqSoscio: TButton
-      Left = 424
+    object bt_pesqAtividade: TButton
+      Left = 383
       Top = 26
       Width = 75
       Height = 24
       Caption = '&Pesquisar'
       TabOrder = 0
-      OnClick = bt_pesqSoscioClick
+      OnClick = bt_pesqAtividadeClick
     end
     object edit_pesquisa: TEdit
-      Left = 216
+      Left = 192
       Top = 29
       Width = 185
       Height = 21
@@ -104,13 +104,13 @@ object frm_consultaSocios: Tfrm_consultaSocios
     end
   end
   object DS: TDataSource
-    DataSet = qryCadSocio
-    Left = 200
+    DataSet = qryCadAtividade
+    Left = 208
     Top = 176
   end
   object Icones: TImageList
-    Left = 336
-    Top = 64
+    Left = 288
+    Top = 176
     Bitmap = {
       494C01011C00C001580610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
@@ -1175,51 +1175,26 @@ object frm_consultaSocios: Tfrm_consultaSocios
       8007E01F00000000FFFFFFFF0000000000000000000000000000000000000000
       000000000000}
   end
-  object qryCadSocio: TADOQuery
+  object qryCadAtividade: TADOQuery
     Connection = DM.con
     CursorType = ctStatic
     Parameters = <>
     SQL.Strings = (
-      'select * from socios')
-    Left = 198
-    Top = 112
-    object qryCadSocioCodigoSocio: TAutoIncField
-      FieldName = 'CodigoSocio'
+      'select * from atividades')
+    Left = 102
+    Top = 176
+    object qryCadAtividadeCodigoAtividade: TAutoIncField
+      FieldName = 'CodigoAtividade'
       ReadOnly = True
     end
-    object qryCadSocioNome: TStringField
+    object qryCadAtividadeNome: TStringField
       FieldName = 'Nome'
-      Size = 15
-    end
-    object qryCadSocioEndereco: TStringField
-      FieldName = 'Endereco'
       Size = 25
     end
-    object qryCadSocioComplemento: TStringField
-      FieldName = 'Complemento'
-      Size = 10
-    end
-    object qryCadSocioBairro: TStringField
-      FieldName = 'Bairro'
-    end
-    object qryCadSocioCidade: TStringField
-      FieldName = 'Cidade'
-    end
-    object qryCadSocioEstado: TStringField
-      FieldName = 'Estado'
+    object qryCadAtividadeValor: TBCDField
+      FieldName = 'Valor'
+      Precision = 9
       Size = 2
-    end
-    object qryCadSocioCEP: TStringField
-      FieldName = 'CEP'
-      Size = 8
-    end
-    object qryCadSocioTelefone: TStringField
-      FieldName = 'Telefone'
-      Size = 10
-    end
-    object qryCadSocioCPF: TStringField
-      FieldName = 'CPF'
-      Size = 11
     end
   end
 end

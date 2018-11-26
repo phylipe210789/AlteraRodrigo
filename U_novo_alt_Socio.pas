@@ -65,45 +65,45 @@ begin
       ShowMessage('O campo "Nome" não pode ficar vazio!');
       DBedit_nomeSocio.SetFocus;
     end
-    else if DBedit_ruaSocio.Text = '' then
+    else if DBedit_cpfSocio.Text = '' then
     begin
-      ShowMessage('O campo "Rua" não pode ficar vazio!');
-      DBedit_ruaSocio.SetFocus;
+      ShowMessage('O campo "CPF" não pode ficar vazio!');
+      DBedit_cpfSocio.SetFocus;
     end
       else if DBedit_telSocio.Text = '' then
       begin
-        ShowMessage('O campo "Telefone" não pode ficar vazio!');
+        ShowMessage('O campo "Tel." não pode ficar vazio!');
         DBedit_telSocio.SetFocus;
       end
-        else if DBedit_cidSocio.Text = '' then
+        else if DBedit_ruaSocio.Text = '' then
         begin
-          ShowMessage('O campo "Cidade" não pode ficar vazio!');
-          DBedit_cidSocio.SetFocus;
+          ShowMessage('O campo "Rua" não pode ficar vazio!');
+          DBedit_ruaSocio.SetFocus;
         end
-          else if DBedit_cepSocio.Text = '' then
+          else if DBedit_compSocio.Text = '' then
           begin
-            ShowMessage('O campo "CEP" não pode ficar vazio!');
-            DBedit_cepSocio.SetFocus;
+            ShowMessage('O campo "Comp." não pode ficar vazio!');
+            DBedit_compSocio.SetFocus;
           end
-          else if DBedit_ufSocio.Text = '' then
+          else if DBedit_bairroSocio.Text = '' then
             begin
-              ShowMessage('O campo "UF" não pode ficar vazio!');
-              DBedit_ufSocio.SetFocus;
+              ShowMessage('O campo "Bairro" não pode ficar vazio!');
+              DBedit_bairroSocio.SetFocus;
             end
-              else if DBedit_compSocio.Text = '' then
+              else if DBedit_cidSocio.Text = '' then
               begin
-                ShowMessage('O campo "Complemento" não pode ficar vazio!');
-                DBedit_compSocio.SetFocus;
+                ShowMessage('O campo "Cidade" não pode ficar vazio!');
+                DBedit_cidSocio.SetFocus;
               end
-                else if DBedit_cpfSocio.Text = '' then
+                else if DBedit_ufSocio.Text = '' then
                 begin
-                  ShowMessage('O campo "CPF" não pode ficar vazio!');
-                  DBedit_cpfSocio.SetFocus;
+                  ShowMessage('O campo "U.F." não pode ficar vazio!');
+                  DBedit_ufSocio.SetFocus;
                 end
-                  else if DBedit_bairroSocio.Text = '' then
+                  else if DBedit_cepSocio.Text = '' then
                   begin
-                    ShowMessage('O campo "Bairro" não pode ficar vazio!');
-                    DBedit_bairroSocio.SetFocus;
+                    ShowMessage('O campo "CEP" não pode ficar vazio!');
+                    DBedit_cepSocio.SetFocus;
                   end
                     else if DS.State in [dsInsert] then
                     begin
