@@ -54,7 +54,7 @@ implementation
 
 {$R *.dfm}
 
-uses U_login, U_sobre, U_cadMatriculas, U_consultaAtividade, U_consultaSocios, Udm,
+uses U_login, U_sobre, U_consultaMatricula, U_consultaAtividade, U_consultaSocios, Udm,
      U_relSocios, U_relAtividades, U_relMatriculas;
 
 procedure Tfrm_main.AtividadeCadastroClick(Sender: TObject);
@@ -114,7 +114,7 @@ end;
 
 procedure Tfrm_main.MatriculaCadastroClick(Sender: TObject);
 begin
-  with Tfrm_cadMatriculas.Create(Application) do
+  with Tfrm_consultaMatricula.Create(Application) do
   try
     showmodal;
   finally

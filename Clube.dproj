@@ -106,8 +106,8 @@
             <Form>frm_consultaAtividade</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="U_cadMatriculas.pas">
-            <Form>frm_cadMatriculas</Form>
+        <DCCReference Include="U_consultaMatricula.pas">
+            <Form>frm_consultaMatricula</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="U_login.pas">
@@ -137,6 +137,10 @@
         </DCCReference>
         <DCCReference Include="U_novo_alt_Atividade.pas">
             <Form>frm_novo_alt_Atividade</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="U_novo_alt_Matricula.pas">
+            <Form>frm_novo_alt_Matricula</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

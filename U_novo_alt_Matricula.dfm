@@ -1,9 +1,9 @@
-object frm_cadMatriculas: Tfrm_cadMatriculas
+object frm_novo_alt_Matricula: Tfrm_novo_alt_Matricula
   Left = 0
   Top = 0
-  Caption = 'Matriculas'
-  ClientHeight = 324
-  ClientWidth = 673
+  BorderIcons = [biSystemMenu]
+  ClientHeight = 121
+  ClientWidth = 469
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,27 +12,33 @@ object frm_cadMatriculas: Tfrm_cadMatriculas
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
-  OnClose = FormClose
-  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 8
-    Top = 0
+    Left = 116
+    Top = 8
     Width = 25
     Height = 13
     Caption = 'Socio'
   end
   object Label2: TLabel
-    Left = 216
-    Top = 0
+    Left = 316
+    Top = 8
     Width = 45
     Height = 13
     Caption = 'Atividade'
   end
+  object lb_codSocio: TLabel
+    Left = 27
+    Top = 8
+    Width = 79
+    Height = 13
+    Caption = 'C'#243'digo Matricula'
+    Enabled = False
+  end
   object DBLookupComboBox1: TDBLookupComboBox
-    Left = 8
-    Top = 32
+    Left = 116
+    Top = 27
     Width = 145
     Height = 21
     DataField = 'CodigoSocio'
@@ -42,17 +48,9 @@ object frm_cadMatriculas: Tfrm_cadMatriculas
     ListSource = ds2
     TabOrder = 0
   end
-  object DBNavigator1: TDBNavigator
-    Left = 45
-    Top = 59
-    Width = 240
-    Height = 25
-    DataSource = ds4
-    TabOrder = 1
-  end
   object DBLookupComboBox2: TDBLookupComboBox
-    Left = 208
-    Top = 32
+    Left = 316
+    Top = 27
     Width = 145
     Height = 21
     DataField = 'CodigoAtividade'
@@ -60,54 +58,48 @@ object frm_cadMatriculas: Tfrm_cadMatriculas
     KeyField = 'CodigoAtividade'
     ListField = 'Nome'
     ListSource = ds3
+    TabOrder = 1
+  end
+  object bt_salvarSocio: TButton
+    Left = 290
+    Top = 80
+    Width = 75
+    Height = 25
+    Caption = '&Salvar'
     TabOrder = 2
   end
-  object DBGrid1: TDBGrid
-    Left = 0
-    Top = 96
-    Width = 673
-    Height = 228
-    Align = alBottom
+  object bt_cancelSocio: TButton
+    Left = 386
+    Top = 80
+    Width = 75
+    Height = 25
+    Caption = '&Canelar'
+    TabOrder = 3
+  end
+  object DBedit_codSocio: TDBEdit
+    Left = 27
+    Top = 27
+    Width = 24
+    Height = 21
+    DataField = 'id_matricula'
     DataSource = ds4
     Enabled = False
-    TabOrder = 3
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
-    Columns = <
-      item
-        Expanded = False
-        FieldName = 'id_matricula'
-        Title.Caption = 'Codigo Matricula'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'socio'
-        Width = 253
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'atividade'
-        Width = 289
-        Visible = True
-      end>
+    TabOrder = 4
   end
   object ds2: TDataSource
     DataSet = qry2
-    Left = 440
-    Top = 48
+    Left = 68
+    Top = 64
   end
   object qry2: TADOQuery
+    Active = True
     Connection = DM.con
     CursorType = ctStatic
     Parameters = <>
     SQL.Strings = (
       'select * from socios')
-    Left = 440
+    Left = 28
+    Top = 64
     object qry2CodigoSocio: TAutoIncField
       FieldName = 'CodigoSocio'
       ReadOnly = True
@@ -149,16 +141,18 @@ object frm_cadMatriculas: Tfrm_cadMatriculas
   end
   object ds3: TDataSource
     DataSet = qry3
-    Left = 504
-    Top = 56
+    Left = 148
+    Top = 64
   end
   object qry3: TADOQuery
+    Active = True
     Connection = DM.con
     CursorType = ctStatic
     Parameters = <>
     SQL.Strings = (
       'select * from atividades')
-    Left = 504
+    Left = 108
+    Top = 64
     object qry3CodigoAtividade: TAutoIncField
       FieldName = 'CodigoAtividade'
       ReadOnly = True
@@ -176,8 +170,8 @@ object frm_cadMatriculas: Tfrm_cadMatriculas
   object ds4: TDataSource
     AutoEdit = False
     DataSet = qry4
-    Left = 584
-    Top = 56
+    Left = 244
+    Top = 64
   end
   object qry4: TADOQuery
     Connection = DM.con
@@ -185,7 +179,8 @@ object frm_cadMatriculas: Tfrm_cadMatriculas
     Parameters = <>
     SQL.Strings = (
       'select * from matriculas')
-    Left = 584
+    Left = 196
+    Top = 64
     object qry4id_matricula: TAutoIncField
       FieldName = 'id_matricula'
       ReadOnly = True
@@ -197,6 +192,7 @@ object frm_cadMatriculas: Tfrm_cadMatriculas
       FieldName = 'CodigoAtividade'
     end
     object qry4socio: TStringField
+      DisplayLabel = 'Socio'
       DisplayWidth = 100
       FieldKind = fkLookup
       FieldName = 'socio'
@@ -207,6 +203,7 @@ object frm_cadMatriculas: Tfrm_cadMatriculas
       Lookup = True
     end
     object qry4atividade: TStringField
+      DisplayLabel = 'Atividade'
       FieldKind = fkLookup
       FieldName = 'atividade'
       LookupDataSet = qry3

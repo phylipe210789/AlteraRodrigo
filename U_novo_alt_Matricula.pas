@@ -1,25 +1,20 @@
-unit U_cadMatriculas;
+unit U_novo_alt_Matricula;
 
 interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Data.Win.ADODB, Vcl.DBCtrls,
-  Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Data.DB, Data.Win.ADODB,
+  Vcl.DBCtrls, Vcl.Mask;
 
 type
-  Tfrm_cadMatriculas = class(TForm)
-    qry2: TADOQuery;
-    ds2: TDataSource;
-    qry3: TADOQuery;
-    ds3: TDataSource;
+  Tfrm_novo_alt_Matricula = class(TForm)
     Label1: TLabel;
     Label2: TLabel;
     DBLookupComboBox1: TDBLookupComboBox;
-    ds4: TDataSource;
-    qry4: TADOQuery;
-    DBNavigator1: TDBNavigator;
     DBLookupComboBox2: TDBLookupComboBox;
+    ds2: TDataSource;
+    qry2: TADOQuery;
     qry2CodigoSocio: TAutoIncField;
     qry2Nome: TStringField;
     qry2Endereco: TStringField;
@@ -30,18 +25,22 @@ type
     qry2CEP: TStringField;
     qry2Telefone: TStringField;
     qry2CPF: TStringField;
+    ds3: TDataSource;
+    qry3: TADOQuery;
     qry3CodigoAtividade: TAutoIncField;
     qry3Nome: TStringField;
     qry3Valor: TBCDField;
+    ds4: TDataSource;
+    qry4: TADOQuery;
     qry4id_matricula: TAutoIncField;
     qry4CodigoSocio: TIntegerField;
     qry4CodigoAtividade: TIntegerField;
-    DBGrid1: TDBGrid;
     qry4socio: TStringField;
     qry4atividade: TStringField;
-    procedure FormCreate(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
-
+    bt_salvarSocio: TButton;
+    bt_cancelSocio: TButton;
+    DBedit_codSocio: TDBEdit;
+    lb_codSocio: TLabel;
   private
     { Private declarations }
   public
@@ -49,30 +48,10 @@ type
   end;
 
 var
-  frm_cadMatriculas: Tfrm_cadMatriculas;
+  frm_novo_alt_Matricula: Tfrm_novo_alt_Matricula;
 
 implementation
 
 {$R *.dfm}
-
-uses Udm;
-
-procedure Tfrm_cadMatriculas.FormClose(Sender: TObject;
-  var Action: TCloseAction);
-begin
-         qry2.Close;
-         qry3.Close;
-         qry4.Close;
-         DBLookupComboBox1.SetFocus;
-end;
-
-procedure Tfrm_cadMatriculas.FormCreate(Sender: TObject);
-begin
-      qry2.Open;
-      qry3.Open;
-      qry4.Open;
-      DBLookupComboBox1.KeyValue := 0;
-      DBLookupComboBox2.KeyValue := 0;
-end;
 
 end.

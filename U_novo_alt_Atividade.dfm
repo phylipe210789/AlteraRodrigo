@@ -2,8 +2,8 @@ object frm_novo_alt_Atividade: Tfrm_novo_alt_Atividade
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu]
-  ClientHeight = 156
-  ClientWidth = 447
+  ClientHeight = 132
+  ClientWidth = 385
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,21 +17,21 @@ object frm_novo_alt_Atividade: Tfrm_novo_alt_Atividade
   PixelsPerInch = 96
   TextHeight = 13
   object lb_cpfSocio: TLabel
-    Left = 113
+    Left = 112
     Top = 51
     Width = 28
     Height = 13
     Caption = 'Valor:'
   end
   object lb_nomeSocio: TLabel
-    Left = 92
+    Left = 91
     Top = 11
     Width = 49
     Height = 13
     Caption = 'Atividade:'
   end
   object lb_codSocio: TLabel
-    Left = 16
+    Left = 15
     Top = 11
     Width = 37
     Height = 13
@@ -39,7 +39,7 @@ object frm_novo_alt_Atividade: Tfrm_novo_alt_Atividade
     Enabled = False
   end
   object DBedit_valorAtividade: TDBEdit
-    Left = 147
+    Left = 146
     Top = 48
     Width = 46
     Height = 21
@@ -48,7 +48,7 @@ object frm_novo_alt_Atividade: Tfrm_novo_alt_Atividade
     TabOrder = 1
   end
   object DBedit_nomeAtividade: TDBEdit
-    Left = 147
+    Left = 146
     Top = 8
     Width = 219
     Height = 21
@@ -57,7 +57,7 @@ object frm_novo_alt_Atividade: Tfrm_novo_alt_Atividade
     TabOrder = 0
   end
   object DBedit_codAtividade: TDBEdit
-    Left = 59
+    Left = 58
     Top = 8
     Width = 24
     Height = 21
@@ -67,8 +67,8 @@ object frm_novo_alt_Atividade: Tfrm_novo_alt_Atividade
     TabOrder = 4
   end
   object bt_salvarSocio: TButton
-    Left = 212
-    Top = 112
+    Left = 194
+    Top = 96
     Width = 75
     Height = 25
     Caption = '&Salvar'
@@ -76,8 +76,8 @@ object frm_novo_alt_Atividade: Tfrm_novo_alt_Atividade
     OnClick = bt_salvarSocioClick
   end
   object bt_cancelSocio: TButton
-    Left = 308
-    Top = 112
+    Left = 290
+    Top = 96
     Width = 75
     Height = 25
     Caption = '&Canelar'
@@ -86,7 +86,7 @@ object frm_novo_alt_Atividade: Tfrm_novo_alt_Atividade
   end
   object DS: TDataSource
     DataSet = frm_consultaAtividade.qryCadAtividade
-    Left = 88
-    Top = 104
+    Left = 87
+    Top = 88
   end
 end
