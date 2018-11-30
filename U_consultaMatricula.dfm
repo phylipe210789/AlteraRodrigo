@@ -31,8 +31,6 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
     ParentColor = False
     ShowCaptions = True
     TabOrder = 0
-    ExplicitLeft = -191
-    ExplicitWidth = 900
     object bt_cadSocio: TToolButton
       Left = 0
       Top = 0
@@ -60,8 +58,6 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
     Height = 69
     Align = alBottom
     TabOrder = 1
-    ExplicitLeft = -191
-    ExplicitWidth = 900
     object bt_pesqSoscio: TButton
       Left = 424
       Top = 26
@@ -129,7 +125,7 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
     Left = 416
     Top = 104
     Bitmap = {
-      494C01011C00C001600610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011C00C001640610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

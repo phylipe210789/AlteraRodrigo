@@ -2,7 +2,7 @@ object frm_novo_alt_Socio: Tfrm_novo_alt_Socio
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu]
-  ClientHeight = 202
+  ClientHeight = 185
   ClientWidth = 697
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET

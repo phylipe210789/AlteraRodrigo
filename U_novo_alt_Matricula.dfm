@@ -12,6 +12,7 @@ object frm_novo_alt_Matricula: Tfrm_novo_alt_Matricula
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -31,9 +32,9 @@ object frm_novo_alt_Matricula: Tfrm_novo_alt_Matricula
   object lb_codSocio: TLabel
     Left = 27
     Top = 8
-    Width = 79
+    Width = 69
     Height = 13
-    Caption = 'C'#243'digo Matricula'
+    Caption = 'C'#243'd. Matricula'
     Enabled = False
   end
   object DBLookupComboBox1: TDBLookupComboBox
@@ -87,131 +88,19 @@ object frm_novo_alt_Matricula: Tfrm_novo_alt_Matricula
     TabOrder = 4
   end
   object ds2: TDataSource
-    DataSet = qry2
-    Left = 68
+    DataSet = frm_consultaMatricula.qry2
+    Left = 76
     Top = 64
-  end
-  object qry2: TADOQuery
-    Active = True
-    Connection = DM.con
-    CursorType = ctStatic
-    Parameters = <>
-    SQL.Strings = (
-      'select * from socios')
-    Left = 28
-    Top = 64
-    object qry2CodigoSocio: TAutoIncField
-      FieldName = 'CodigoSocio'
-      ReadOnly = True
-    end
-    object qry2Nome: TStringField
-      FieldName = 'Nome'
-      Size = 15
-    end
-    object qry2Endereco: TStringField
-      FieldName = 'Endereco'
-      Size = 25
-    end
-    object qry2Complemento: TStringField
-      FieldName = 'Complemento'
-      Size = 10
-    end
-    object qry2Bairro: TStringField
-      FieldName = 'Bairro'
-    end
-    object qry2Cidade: TStringField
-      FieldName = 'Cidade'
-    end
-    object qry2Estado: TStringField
-      FieldName = 'Estado'
-      Size = 2
-    end
-    object qry2CEP: TStringField
-      FieldName = 'CEP'
-      Size = 8
-    end
-    object qry2Telefone: TStringField
-      FieldName = 'Telefone'
-      Size = 10
-    end
-    object qry2CPF: TStringField
-      FieldName = 'CPF'
-      Size = 11
-    end
   end
   object ds3: TDataSource
-    DataSet = qry3
-    Left = 148
+    DataSet = frm_consultaMatricula.qry3
+    Left = 124
     Top = 64
-  end
-  object qry3: TADOQuery
-    Active = True
-    Connection = DM.con
-    CursorType = ctStatic
-    Parameters = <>
-    SQL.Strings = (
-      'select * from atividades')
-    Left = 108
-    Top = 64
-    object qry3CodigoAtividade: TAutoIncField
-      FieldName = 'CodigoAtividade'
-      ReadOnly = True
-    end
-    object qry3Nome: TStringField
-      FieldName = 'Nome'
-      Size = 25
-    end
-    object qry3Valor: TBCDField
-      FieldName = 'Valor'
-      Precision = 9
-      Size = 2
-    end
   end
   object ds4: TDataSource
     AutoEdit = False
-    DataSet = qry4
-    Left = 244
+    DataSet = frm_consultaMatricula.qry4
+    Left = 172
     Top = 64
-  end
-  object qry4: TADOQuery
-    Connection = DM.con
-    CursorType = ctStatic
-    Parameters = <>
-    SQL.Strings = (
-      'select * from matriculas')
-    Left = 196
-    Top = 64
-    object qry4id_matricula: TAutoIncField
-      FieldName = 'id_matricula'
-      ReadOnly = True
-    end
-    object qry4CodigoSocio: TIntegerField
-      FieldName = 'CodigoSocio'
-    end
-    object qry4CodigoAtividade: TIntegerField
-      FieldName = 'CodigoAtividade'
-    end
-    object qry4socio: TStringField
-      DisplayLabel = 'Socio'
-      DisplayWidth = 100
-      FieldKind = fkLookup
-      FieldName = 'socio'
-      LookupDataSet = qry2
-      LookupKeyFields = 'CodigoSocio'
-      LookupResultField = 'Nome'
-      KeyFields = 'CodigoSocio'
-      Lookup = True
-    end
-    object qry4atividade: TStringField
-      DisplayLabel = 'Atividade'
-      FieldKind = fkLookup
-      FieldName = 'atividade'
-      LookupDataSet = qry3
-      LookupKeyFields = 'CodigoAtividade'
-      LookupResultField = 'Nome'
-      KeyFields = 'CodigoAtividade'
-      Size = 100
-      Lookup = True
-    end
   end
 end
