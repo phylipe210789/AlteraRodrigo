@@ -16,10 +16,10 @@ type
     bt_excSoscio: TToolButton;
     Icones: TImageList;
     Panel1: TPanel;
-    bt_pesqSoscio: TButton;
+    bt_pesqMat: TButton;
     edit_pesquisa: TEdit;
     rg_filtros: TRadioGroup;
-    DBGrid1: TDBGrid;
+    DBGrid_Matriculas: TDBGrid;
     qry2: TADOQuery;
     qry2CodigoSocio: TAutoIncField;
     qry2Nome: TStringField;
@@ -44,9 +44,9 @@ type
     qry4socio: TStringField;
     qry4atividade: TStringField;
     ds4: TDataSource;
-    procedure FormCreate(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bt_cadSocioClick(Sender: TObject);
+    procedure bt_altSocioClick(Sender: TObject);
+    procedure bt_excSoscioClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -63,6 +63,28 @@ implementation
 
 uses Udm, U_novo_alt_Matricula;
 
+procedure Tfrm_consultaMatricula.bt_altSocioClick(Sender: TObject);
+begin
+
+  if not qry4.Active and qry4.IsEmpty then
+    begin
+      //qryCadSocio.Open;
+      ShowMessage('Não possui dados para alteração.');
+      edit_pesquisa.SetFocus;
+    end
+    else begin
+        qry4.Open;
+        qry4.Edit;
+      with Tfrm_novo_alt_Matricula.Create(Application) do
+      try
+        showmodal;
+      finally
+        free;
+      end;
+    end;
+
+end;
+
 procedure Tfrm_consultaMatricula.bt_cadSocioClick(Sender: TObject);
 begin
 
@@ -77,22 +99,31 @@ begin
 
 end;
 
-procedure Tfrm_consultaMatricula.FormClose(Sender: TObject;
-  var Action: TCloseAction);
-begin
-         //qry2.Close;
-         //qry3.Close;
-         //qry4.Close;
-         //DBLookupComboBox1.SetFocus;
-end;
+procedure Tfrm_consultaMatricula.bt_excSoscioClick(Sender: TObject);
+  const
 
-procedure Tfrm_consultaMatricula.FormCreate(Sender: TObject);
+  msg = 'Deseja realmente excluir o Socio: ';
+
 begin
-      //qry2.Open;
-      //qry3.Open;
-      //qry4.Open;
-      //DBLookupComboBox1.KeyValue := 0;
-      //DBLookupComboBox2.KeyValue := 0;
+
+ try
+
+  if not qry4.Active and qry4.IsEmpty then
+  begin
+     ShowMessage('Não possui dados para exclusão.');
+     edit_pesquisa.SetFocus;
+  end
+  else begin
+      qry4.Open;
+      if MessageDlg(msg+ds2.DataSet.FieldByName('Nome').AsString+' ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+      qry4.Delete;
+  end;
+
+ except
+
+  MessageDlg('Esse registro possui movimentações e não pode ser excluido', mtError, mbOKCancel, 0);
+
+ end;
 end;
 
 end.

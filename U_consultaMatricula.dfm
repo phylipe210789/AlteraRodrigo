@@ -12,8 +12,6 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
-  OnClose = FormClose
-  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object ToolBar1: TToolBar
@@ -43,12 +41,14 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
       Top = 0
       Caption = '&Alterar'
       ImageIndex = 1
+      OnClick = bt_altSocioClick
     end
     object bt_excSoscio: TToolButton
       Left = 110
       Top = 0
       Caption = '&Excluir'
       ImageIndex = 2
+      OnClick = bt_excSoscioClick
     end
   end
   object Panel1: TPanel
@@ -58,7 +58,7 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
     Height = 69
     Align = alBottom
     TabOrder = 1
-    object bt_pesqSoscio: TButton
+    object bt_pesqMat: TButton
       Left = 424
       Top = 26
       Width = 75
@@ -87,14 +87,13 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
       TabOrder = 2
     end
   end
-  object DBGrid1: TDBGrid
+  object DBGrid_Matriculas: TDBGrid
     Left = 0
     Top = 36
     Width = 511
     Height = 205
     Align = alClient
     DataSource = ds4
-    Enabled = False
     TabOrder = 2
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -125,7 +124,7 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
     Left = 416
     Top = 104
     Bitmap = {
-      494C01011C00C001640610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011C00C001700610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1189,7 +1188,6 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
       000000000000}
   end
   object qry2: TADOQuery
-    Active = True
     Connection = DM.con
     CursorType = ctStatic
     Parameters = <>
@@ -1247,7 +1245,6 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
     Top = 160
   end
   object qry3: TADOQuery
-    Active = True
     Connection = DM.con
     CursorType = ctStatic
     Parameters = <>

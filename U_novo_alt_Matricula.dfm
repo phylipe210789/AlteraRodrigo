@@ -12,6 +12,7 @@ object frm_novo_alt_Matricula: Tfrm_novo_alt_Matricula
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -68,6 +69,7 @@ object frm_novo_alt_Matricula: Tfrm_novo_alt_Matricula
     Height = 25
     Caption = '&Salvar'
     TabOrder = 2
+    OnClick = bt_salvarSocioClick
   end
   object bt_cancelSocio: TButton
     Left = 386
@@ -76,6 +78,7 @@ object frm_novo_alt_Matricula: Tfrm_novo_alt_Matricula
     Height = 25
     Caption = '&Canelar'
     TabOrder = 3
+    OnClick = bt_cancelSocioClick
   end
   object DBedit_codSocio: TDBEdit
     Left = 27
