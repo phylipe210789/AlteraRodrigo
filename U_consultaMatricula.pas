@@ -47,6 +47,7 @@ type
     procedure bt_cadSocioClick(Sender: TObject);
     procedure bt_altSocioClick(Sender: TObject);
     procedure bt_excSoscioClick(Sender: TObject);
+    procedure bt_pesqMatClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -124,6 +125,47 @@ begin
   MessageDlg('Esse registro possui movimentações e não pode ser excluido', mtError, mbOKCancel, 0);
 
  end;
+end;
+
+procedure Tfrm_consultaMatricula.bt_pesqMatClick(Sender: TObject);
+const
+  sql_base =
+   ' SELECT '+
+   '   M.id_matricula, S.Nome as socio, A.Nome as atividade '+
+   ' FROM '+
+   '   Matriculas M '+
+   ' INNER JOIN '+
+   '   Socios S ON S.CodigoSocio = M.CodigoSocio '+
+   ' INNER JOIN '+
+   '   Atividades A ON A.CodigoAtividade = M.CodigoAtividade '+
+   ' WHERE ';
+
+begin
+
+  qry4.Close;
+  qry4.SQL.Clear;
+  qry4.SQL.Add(sql_base);
+  case rg_filtros.ItemIndex of
+  0:Begin
+      qry4.SQL.Add(' convert(varchar(10),M.id_matricula) like :id_matricula ');
+      qry4.Parameters[0].Value := edit_pesquisa.Text+'%';
+    end;
+  1:Begin
+      qry4.SQL.Add(' S.Nome like :Nome order by S.Nome ');
+      qry4.Parameters[0].Value := edit_pesquisa.Text+'%';
+    End;
+  end;
+
+  qry4.Open;
+
+  if qry4.IsEmpty then
+  Begin
+     ShowMessage('Não possui dados.');
+     edit_pesquisa.SetFocus;
+  End
+  else
+    DBGrid_Matriculas.SetFocus;
+
 end;
 
 end.

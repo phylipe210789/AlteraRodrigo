@@ -65,6 +65,7 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
       Height = 24
       Caption = '&Pesquisar'
       TabOrder = 0
+      OnClick = bt_pesqMatClick
     end
     object edit_pesquisa: TEdit
       Left = 216
@@ -83,7 +84,7 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
       ItemIndex = 1
       Items.Strings = (
         'C'#243'digo'
-        'Nome')
+        'Nome Socio')
       TabOrder = 2
     end
   end
@@ -124,7 +125,7 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
     Left = 416
     Top = 104
     Bitmap = {
-      494C01011C00C001700610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011C00C001780610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
