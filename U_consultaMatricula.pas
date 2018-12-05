@@ -116,7 +116,7 @@ begin
   end
   else begin
       qry4.Open;
-      if MessageDlg(msg+ds2.DataSet.FieldByName('Nome').AsString+' ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+      if MessageDlg(msg+ds4.DataSet.FieldByName('id_matricula').AsString+' ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
       qry4.Delete;
   end;
 
@@ -131,7 +131,7 @@ procedure Tfrm_consultaMatricula.bt_pesqMatClick(Sender: TObject);
 const
   sql_base =
    ' SELECT '+
-   '   M.id_matricula, S.Nome as socio, A.Nome as atividade '+
+   '   M.id_matricula, S.Nome, A.Nome, M.CodigoSocio, M.CodigoAtividade '+
    ' FROM '+
    '   Matriculas M '+
    ' INNER JOIN '+
@@ -147,7 +147,7 @@ begin
   qry4.SQL.Add(sql_base);
   case rg_filtros.ItemIndex of
   0:Begin
-      qry4.SQL.Add(' convert(varchar(10),M.id_matricula) like :id_matricula ');
+      qry4.SQL.Add(' convert(varchar(10),M.id_matricula) like :id_matricula order by M.id_matricula ');
       qry4.Parameters[0].Value := edit_pesquisa.Text+'%';
     end;
   1:Begin
