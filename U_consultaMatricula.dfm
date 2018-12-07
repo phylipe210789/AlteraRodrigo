@@ -126,7 +126,7 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
     Left = 416
     Top = 104
     Bitmap = {
-      494C01011C00C001840610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011C00C0019C0610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1190,6 +1190,7 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
       000000000000}
   end
   object qry2: TADOQuery
+    Active = True
     Connection = DM.con
     CursorType = ctStatic
     Parameters = <>
@@ -1247,6 +1248,7 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
     Top = 160
   end
   object qry3: TADOQuery
+    Active = True
     Connection = DM.con
     CursorType = ctStatic
     Parameters = <>
@@ -1295,6 +1297,7 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
       LookupKeyFields = 'CodigoSocio'
       LookupResultField = 'Nome'
       KeyFields = 'CodigoSocio'
+      ProviderFlags = []
       Lookup = True
     end
     object qry4atividade: TStringField
@@ -1305,6 +1308,7 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
       LookupKeyFields = 'CodigoAtividade'
       LookupResultField = 'Nome'
       KeyFields = 'CodigoAtividade'
+      ProviderFlags = []
       Size = 100
       Lookup = True
     end

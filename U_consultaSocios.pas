@@ -119,6 +119,7 @@ procedure Tfrm_consultaSocios.bt_pesqSoscioClick(Sender: TObject);
 const
   sql_base = 'select * from socios where ';
 begin
+
   qryCadSocio.Close;
   qryCadSocio.SQL.Clear;
   qryCadSocio.SQL.Add(sql_base);

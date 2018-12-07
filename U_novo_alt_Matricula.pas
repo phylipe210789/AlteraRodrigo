@@ -56,7 +56,7 @@ begin
     end
     else if DBLookupComboBox2.Text = '' then
     begin
-      ShowMessage('A seleção da "Atividade" não pode ficar vaziA!');
+      ShowMessage('A seleção da "Atividade" não pode ficar vazia!');
       DBLookupComboBox2.SetFocus;
     end
   else if ds4.State in [dsInsert] then

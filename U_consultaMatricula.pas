@@ -89,6 +89,9 @@ end;
 procedure Tfrm_consultaMatricula.bt_cadSocioClick(Sender: TObject);
 begin
 
+  //if not (qry4.Active)then
+     //qry4.Open;
+
    with Tfrm_novo_alt_Matricula.Create(Application) do
    try
       qry4.Open;
@@ -103,7 +106,7 @@ end;
 procedure Tfrm_consultaMatricula.bt_excSoscioClick(Sender: TObject);
   const
 
-  msg = 'Deseja realmente excluir o Socio: ';
+  msg = 'Deseja realmente excluir a matricula do Socio: ';
 
 begin
 
@@ -115,9 +118,9 @@ begin
      edit_pesquisa.SetFocus;
   end
   else begin
-      qry4.Open;
-      if MessageDlg(msg+ds4.DataSet.FieldByName('id_matricula').AsString+' ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-      qry4.Delete;
+     qry4.Open;
+     if MessageDlg(msg+ds4.DataSet.FieldByName('socio').AsString+' ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+     qry4.Delete;
   end;
 
  except
@@ -131,12 +134,12 @@ procedure Tfrm_consultaMatricula.bt_pesqMatClick(Sender: TObject);
 const
   sql_base =
    ' SELECT '+
-   '   M.id_matricula, S.Nome, A.Nome, M.CodigoSocio, M.CodigoAtividade '+
+   '   M.id_matricula, M.CodigoSocio, M.CodigoAtividade '+
    ' FROM '+
    '   Matriculas M '+
-   ' INNER JOIN '+
+   ' left JOIN '+
    '   Socios S ON S.CodigoSocio = M.CodigoSocio '+
-   ' INNER JOIN '+
+   ' left JOIN '+
    '   Atividades A ON A.CodigoAtividade = M.CodigoAtividade '+
    ' WHERE ';
 
@@ -145,9 +148,10 @@ begin
   qry4.Close;
   qry4.SQL.Clear;
   qry4.SQL.Add(sql_base);
+
   case rg_filtros.ItemIndex of
   0:Begin
-      qry4.SQL.Add(' convert(varchar(10),M.id_matricula) like :id_matricula order by M.id_matricula ');
+      qry4.SQL.Add(' convert(varchar(10),M.id_matricula) like :id_matricula order by M.id_matricula');
       qry4.Parameters[0].Value := edit_pesquisa.Text+'%';
     end;
   1:Begin
@@ -157,6 +161,7 @@ begin
   end;
 
   qry4.Open;
+  qry4.Properties['Unique Table'].Value := 'Matriculas';
 
   if qry4.IsEmpty then
   Begin
