@@ -1,7 +1,7 @@
 object frm_relSocios: Tfrm_relSocios
   Left = 0
   Top = 0
-  Caption = 'Relatorio Socios'
+  Caption = 'Relatorio de Socios'
   ClientHeight = 187
   ClientWidth = 400
   Color = clBtnFace
@@ -12,6 +12,7 @@ object frm_relSocios: Tfrm_relSocios
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object lbl_relSocios: TLabel
@@ -675,6 +676,7 @@ object frm_relSocios: Tfrm_relSocios
     Top = 72
   end
   object qry_relSocios: TADOQuery
+    Active = True
     Connection = DM.con
     CursorType = ctStatic
     Parameters = <

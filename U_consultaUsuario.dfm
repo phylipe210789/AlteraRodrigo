@@ -1,10 +1,10 @@
-object frm_consultaMatricula: Tfrm_consultaMatricula
+object frm_consultaUsuario: Tfrm_consultaUsuario
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu]
-  Caption = 'Consulta de Matriculas'
-  ClientHeight = 310
-  ClientWidth = 511
+  Caption = 'Consulta Usu'#225'rios'
+  ClientHeight = 237
+  ClientWidth = 382
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,7 +18,7 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
   object ToolBar1: TToolBar
     Left = 0
     Top = 0
-    Width = 511
+    Width = 382
     Height = 36
     AutoSize = True
     ButtonHeight = 36
@@ -30,46 +30,46 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
     ParentColor = False
     ShowCaptions = True
     TabOrder = 0
-    object bt_cadSocio: TToolButton
+    object bt_cadUsuario: TToolButton
       Left = 0
       Top = 0
       Caption = '&Cadastrar'
       ImageIndex = 0
-      OnClick = bt_cadSocioClick
+      OnClick = bt_cadUsuarioClick
     end
-    object bt_altSocio: TToolButton
+    object bt_altUsuario: TToolButton
       Left = 55
       Top = 0
       Caption = '&Alterar'
       ImageIndex = 1
-      OnClick = bt_altSocioClick
+      OnClick = bt_altUsuarioClick
     end
-    object bt_excSoscio: TToolButton
+    object bt_excUsuario: TToolButton
       Left = 110
       Top = 0
       Caption = '&Excluir'
       ImageIndex = 2
-      OnClick = bt_excSoscioClick
+      OnClick = bt_excUsuarioClick
     end
   end
   object Panel1: TPanel
     Left = 0
-    Top = 241
-    Width = 511
+    Top = 168
+    Width = 382
     Height = 69
     Align = alBottom
     TabOrder = 1
-    object bt_pesqMat: TButton
-      Left = 424
+    object bt_pesqLogin: TButton
+      Left = 286
       Top = 26
       Width = 75
       Height = 24
       Caption = '&Pesquisar'
       TabOrder = 0
-      OnClick = bt_pesqMatClick
+      OnClick = bt_pesqLoginClick
     end
     object edit_pesquisa: TEdit
-      Left = 216
+      Left = 95
       Top = 29
       Width = 185
       Height = 21
@@ -78,24 +78,24 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
     object rg_filtros: TRadioGroup
       Left = 1
       Top = 1
-      Width = 185
+      Width = 88
       Height = 67
       Align = alLeft
       Caption = 'Filtros'
       ItemIndex = 1
       Items.Strings = (
         'C'#243'digo'
-        'Nome Socio')
+        'Usu'#225'rio')
       TabOrder = 2
     end
   end
-  object DBGrid_Matriculas: TDBGrid
+  object DBGrid_Login: TDBGrid
     Left = 0
     Top = 36
-    Width = 511
-    Height = 205
+    Width = 382
+    Height = 132
     Align = alClient
-    DataSource = ds4
+    DataSource = dsLogin
     TabOrder = 2
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -105,28 +105,46 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
     Columns = <
       item
         Expanded = False
-        FieldName = 'id_matricula'
-        Title.Caption = 'Codigo Matricula'
+        FieldName = 'id_user'
+        Title.Caption = 'C'#243'digo'
+        Width = 46
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'socio'
-        Width = 278
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'atividade'
-        Width = 106
+        FieldName = 'login'
+        Title.Caption = 'Usu'#225'rio'
+        Width = 108
         Visible = True
       end>
   end
+  object qryCadLogin: TADOQuery
+    Connection = DM.con
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from login'
+      '')
+    Left = 94
+    Top = 94
+    object qryCadLoginid_user: TAutoIncField
+      FieldName = 'id_user'
+      ReadOnly = True
+    end
+    object qryCadLoginlogin: TStringField
+      FieldName = 'login'
+      Size = 15
+    end
+    object qryCadLoginsenha: TStringField
+      FieldName = 'senha'
+      Size = 50
+    end
+  end
   object Icones: TImageList
-    Left = 416
-    Top = 104
+    Left = 280
+    Top = 94
     Bitmap = {
-      494C01011C00C001A00610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011C00C001680610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1189,134 +1207,9 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
       8007E01F00000000FFFFFFFF0000000000000000000000000000000000000000
       000000000000}
   end
-  object qry2: TADOQuery
-    Active = True
-    Connection = DM.con
-    CursorType = ctStatic
-    Parameters = <>
-    SQL.Strings = (
-      'select * from socios')
-    Left = 184
-    Top = 104
-    object qry2CodigoSocio: TAutoIncField
-      FieldName = 'CodigoSocio'
-      ReadOnly = True
-    end
-    object qry2Nome: TStringField
-      FieldName = 'Nome'
-      Size = 15
-    end
-    object qry2Endereco: TStringField
-      FieldName = 'Endereco'
-      Size = 25
-    end
-    object qry2Complemento: TStringField
-      FieldName = 'Complemento'
-      Size = 10
-    end
-    object qry2Bairro: TStringField
-      FieldName = 'Bairro'
-    end
-    object qry2Cidade: TStringField
-      FieldName = 'Cidade'
-    end
-    object qry2Estado: TStringField
-      FieldName = 'Estado'
-      Size = 2
-    end
-    object qry2CEP: TStringField
-      FieldName = 'CEP'
-      Size = 8
-    end
-    object qry2Telefone: TStringField
-      FieldName = 'Telefone'
-      Size = 10
-    end
-    object qry2CPF: TStringField
-      FieldName = 'CPF'
-      Size = 11
-    end
-  end
-  object ds2: TDataSource
-    DataSet = qry2
-    Left = 184
-    Top = 152
-  end
-  object ds3: TDataSource
-    DataSet = qry3
-    Left = 248
-    Top = 160
-  end
-  object qry3: TADOQuery
-    Active = True
-    Connection = DM.con
-    CursorType = ctStatic
-    Parameters = <>
-    SQL.Strings = (
-      'select * from atividades')
-    Left = 248
-    Top = 104
-    object qry3CodigoAtividade: TAutoIncField
-      FieldName = 'CodigoAtividade'
-      ReadOnly = True
-    end
-    object qry3Nome: TStringField
-      FieldName = 'Nome'
-      Size = 25
-    end
-    object qry3Valor: TBCDField
-      FieldName = 'Valor'
-      Precision = 9
-      Size = 2
-    end
-  end
-  object qry4: TADOQuery
-    Connection = DM.con
-    CursorType = ctStatic
-    Parameters = <>
-    SQL.Strings = (
-      'select * from matriculas')
-    Left = 328
-    Top = 104
-    object qry4id_matricula: TAutoIncField
-      FieldName = 'id_matricula'
-      ReadOnly = True
-    end
-    object qry4CodigoSocio: TIntegerField
-      FieldName = 'CodigoSocio'
-    end
-    object qry4CodigoAtividade: TIntegerField
-      FieldName = 'CodigoAtividade'
-    end
-    object qry4socio: TStringField
-      DisplayLabel = 'Socio'
-      DisplayWidth = 100
-      FieldKind = fkLookup
-      FieldName = 'socio'
-      LookupDataSet = qry2
-      LookupKeyFields = 'CodigoSocio'
-      LookupResultField = 'Nome'
-      KeyFields = 'CodigoSocio'
-      ProviderFlags = []
-      Lookup = True
-    end
-    object qry4atividade: TStringField
-      DisplayLabel = 'Atividade'
-      FieldKind = fkLookup
-      FieldName = 'atividade'
-      LookupDataSet = qry3
-      LookupKeyFields = 'CodigoAtividade'
-      LookupResultField = 'Nome'
-      KeyFields = 'CodigoAtividade'
-      ProviderFlags = []
-      Size = 100
-      Lookup = True
-    end
-  end
-  object ds4: TDataSource
-    AutoEdit = False
-    DataSet = qry4
-    Left = 328
-    Top = 160
+  object dsLogin: TDataSource
+    DataSet = qryCadLogin
+    Left = 200
+    Top = 94
   end
 end

@@ -44,6 +44,7 @@ type
     procedure bt_geraClick(Sender: TObject);
     procedure br_cancelaClick(Sender: TObject);
     procedure chk_relAtividadesClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
 
   private
     { Private declarations }
@@ -68,7 +69,7 @@ end;
 procedure Tfrm_relAtividades.bt_geraClick(Sender: TObject);
 begin
 
-      if (not chk_relAtividades.Checked) and VarIsNull(DBCB_relAtividades.KeyValue) then
+  if (not chk_relAtividades.Checked) and VarIsNull(DBCB_relAtividades.KeyValue) then
    Begin
      ShowMessage('Selecione um Registro.');
      DBCB_relAtividades.SetFocus;
@@ -98,6 +99,12 @@ begin
 
   if not TCheckBox(Sender).Checked then
       DBCB_relAtividades.SetFocus;
+end;
+
+procedure Tfrm_relAtividades.FormCreate(Sender: TObject);
+begin
+  dmCadastros.qryCadAtividade.Close;
+  dmCadastros.qryCadAtividade.Open;
 end;
 
 end.

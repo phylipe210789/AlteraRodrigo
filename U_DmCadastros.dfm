@@ -2,8 +2,8 @@ object dmCadastros: TdmCadastros
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Height = 143
-  Width = 206
+  Height = 144
+  Width = 309
   object dsCadSocio: TDataSource
     DataSet = qryCadSocio
     Left = 38
@@ -82,5 +82,31 @@ object dmCadastros: TdmCadastros
       Precision = 9
       Size = 2
     end
+  end
+  object qryCadUsuario: TADOQuery
+    Connection = DM.con
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from login')
+    Left = 215
+    Top = 16
+    object qryCadUsuarioid_user: TAutoIncField
+      FieldName = 'id_user'
+      ReadOnly = True
+    end
+    object qryCadUsuariologin: TStringField
+      FieldName = 'login'
+      Size = 15
+    end
+    object qryCadUsuariosenha: TStringField
+      FieldName = 'senha'
+      Size = 50
+    end
+  end
+  object dsCadUsuario: TDataSource
+    DataSet = qryCadUsuario
+    Left = 217
+    Top = 69
   end
 end

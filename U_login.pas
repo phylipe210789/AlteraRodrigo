@@ -19,10 +19,12 @@ type
     qryloginlogin: TStringField;
     qryloginsenha: TStringField;
     Edit2: TEdit;
-    procedure Button1Click(Sender: TObject);
+    Button2: TButton;
     procedure Edit1KeyPress(Sender: TObject; var Key: Char);
     procedure Edit2KeyPress(Sender: TObject; var Key: Char);
     procedure Button1KeyPress(Sender: TObject; var Key: Char);
+    procedure Button2Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -38,6 +40,29 @@ implementation
 {$R *.dfm}
 
 uses Udm, U_main;
+
+procedure Tfrm_login.Button1Click(Sender: TObject);
+begin
+
+  qrylogin.SQL.Clear;
+      qrylogin.SQL.Add('select * from login where login='''+edit1.Text+''' and senha='''+Edit2.Text+''' ');
+      qrylogin.Open;
+      if qrylogin.IsEmpty then
+      begin
+          ShowMessage('Login ou Senha incorretos!');
+          Edit1.SetFocus;
+          Edit1.Clear;
+          Edit2.Clear;
+      end
+      else
+        ModalResult := mrOk;
+
+end;
+
+procedure Tfrm_login.Button2Click(Sender: TObject);
+begin
+  close;
+end;
 
 procedure Tfrm_login.Button1KeyPress(Sender: TObject; var Key: Char);
 begin
@@ -64,22 +89,6 @@ begin
             key := #0;
             perform(wm_nextdlgctl,0,0);
           end;
-end;
-
-procedure Tfrm_login.Button1Click(Sender: TObject);
-begin
-      qrylogin.SQL.Clear;
-      qrylogin.SQL.Add('select * from login where login='''+edit1.Text+''' and senha='''+Edit2.Text+''' ');
-      qrylogin.Open;
-      if qrylogin.IsEmpty then
-      begin
-          ShowMessage('Login ou Senha incorretos!');
-          Edit1.SetFocus;
-          //Edit1.Clear;
-          //Edit2.Clear;
-      end
-      else
-        ModalResult := mrOk;
 end;
 
 end.

@@ -15,7 +15,10 @@ uses
   U_DmCadastros in 'U_DmCadastros.pas' {dmCadastros: TDataModule},
   U_novo_alt_Socio in 'U_novo_alt_Socio.pas' {frm_novo_alt_Socio},
   U_novo_alt_Atividade in 'U_novo_alt_Atividade.pas' {frm_novo_alt_Atividade},
-  U_novo_alt_Matricula in 'U_novo_alt_Matricula.pas' {frm_novo_alt_Matricula};
+  U_novo_alt_Matricula in 'U_novo_alt_Matricula.pas' {frm_novo_alt_Matricula},
+  U_consultaUsuario in 'U_consultaUsuario.pas' {frm_consultaUsuario},
+  U_novo_alt_Usuario in 'U_novo_alt_Usuario.pas' {frm_novo_alt_Usuario},
+  U_relUsuarios in 'U_relUsuarios.pas' {frm_relUsuario};
 
 {$R *.res}
 

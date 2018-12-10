@@ -63,6 +63,7 @@ type
     procedure chk_relSociosClick(Sender: TObject);
     procedure bt_geraClick(Sender: TObject);
     procedure br_cancelaClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
 
   private
     { Private declarations }
@@ -117,4 +118,10 @@ begin
   if not TCheckBox(Sender).Checked then
     DBCB_relSocios.SetFocus;
 end;
+procedure Tfrm_relSocios.FormCreate(Sender: TObject);
+begin
+  dmCadastros.qryCadSocio.Close;
+  dmCadastros.qryCadSocio.Open;
+end;
+
 end.

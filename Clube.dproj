@@ -143,6 +143,18 @@
             <Form>frm_novo_alt_Matricula</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="U_consultaUsuario.pas">
+            <Form>frm_consultaUsuario</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="U_novo_alt_Usuario.pas">
+            <Form>frm_novo_alt_Usuario</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="U_relUsuarios.pas">
+            <Form>frm_relUsuario</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

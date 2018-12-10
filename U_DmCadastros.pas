@@ -24,6 +24,11 @@ type
     qryCadAtividadeCodigoAtividade: TAutoIncField;
     qryCadAtividadeNome: TStringField;
     qryCadAtividadeValor: TBCDField;
+    qryCadUsuario: TADOQuery;
+    dsCadUsuario: TDataSource;
+    qryCadUsuarioid_user: TAutoIncField;
+    qryCadUsuariologin: TStringField;
+    qryCadUsuariosenha: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private

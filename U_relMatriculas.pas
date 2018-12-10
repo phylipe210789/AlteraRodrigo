@@ -25,14 +25,10 @@ type
     ppHeaderBand1: TppHeaderBand;
     ppLabel1: TppLabel;
     ppLine1: TppLine;
-    ppLine2: TppLine;
     ppLabel3: TppLabel;
-    ppLabel4: TppLabel;
     ppLabel5: TppLabel;
     ppDetailBand1: TppDetailBand;
     ppFooterBand1: TppFooterBand;
-    ppLabel2: TppLabel;
-    ppSystemVariable1: TppSystemVariable;
     ppDesignLayers1: TppDesignLayers;
     ppDesignLayer1: TppDesignLayer;
     ppParameterList1: TppParameterList;
@@ -43,17 +39,25 @@ type
     ppDBText1: TppDBText;
     ppDBText2: TppDBText;
     ppDBText3: TppDBText;
-    ppDBText4: TppDBText;
     ppLabel6: TppLabel;
     ppDBCalc1: TppDBCalc;
     ppLabel7: TppLabel;
     ppSystemVariable2: TppSystemVariable;
     qry_relMatriculassocio: TStringField;
     qry_relMatriculasatividade: TStringField;
+    ppGroup1: TppGroup;
+    ppGroupHeaderBand1: TppGroupHeaderBand;
+    ppGroupFooterBand1: TppGroupFooterBand;
+    ppLabel8: TppLabel;
+    ppDBCalc2: TppDBCalc;
+    ppDBText4: TppDBText;
+    ppLabel4: TppLabel;
+    ppLine2: TppLine;
     procedure chk_relSociosClick(Sender: TObject);
     procedure chk_relAtividadesClick(Sender: TObject);
     procedure br_cancelaClick(Sender: TObject);
     procedure bt_geraClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
 
   private
     { Private declarations }
@@ -130,6 +134,14 @@ begin
         end
           else
               chk_relAtividades.Enabled := True;
+end;
+
+procedure Tfrm_relMatriculas.FormCreate(Sender: TObject);
+begin
+  dmCadastros.qryCadSocio.Close;
+  dmCadastros.qryCadSocio.Open;
+  dmCadastros.qryCadAtividade.Close;
+  dmCadastros.qryCadAtividade.Open;
 end;
 
 end.

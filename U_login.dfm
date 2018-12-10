@@ -1,9 +1,10 @@
 object frm_login: Tfrm_login
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu]
   Caption = 'Login'
-  ClientHeight = 212
-  ClientWidth = 418
+  ClientHeight = 193
+  ClientWidth = 374
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -37,11 +38,11 @@ object frm_login: Tfrm_login
     OnKeyPress = Edit1KeyPress
   end
   object Button1: TButton
-    Left = 144
+    Left = 75
     Top = 160
     Width = 75
     Height = 25
-    Caption = 'Entra'
+    Caption = 'Entrar'
     TabOrder = 2
     OnClick = Button1Click
     OnKeyPress = Button1KeyPress
@@ -54,6 +55,15 @@ object frm_login: Tfrm_login
     PasswordChar = '*'
     TabOrder = 1
     OnKeyPress = Edit2KeyPress
+  end
+  object Button2: TButton
+    Left = 208
+    Top = 160
+    Width = 75
+    Height = 25
+    Caption = 'Fechar'
+    TabOrder = 3
+    OnClick = Button2Click
   end
   object dslogin: TDataSource
     DataSet = qrylogin

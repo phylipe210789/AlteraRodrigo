@@ -12,6 +12,7 @@ object frm_relMatriculas: Tfrm_relMatriculas
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object lbl_relSocios: TLabel
@@ -103,7 +104,7 @@ object frm_relMatriculas: Tfrm_relMatriculas
       FieldName = 'id_matricula'
       FieldLength = 0
       DataType = dtLongint
-      DisplayWidth = 0
+      DisplayWidth = 10
       Position = 0
     end
     object ppDB_relMatriculasppField2: TppField
@@ -191,7 +192,7 @@ object frm_relMatriculas: Tfrm_relMatriculas
     object ppHeaderBand1: TppHeaderBand
       Background.Brush.Style = bsClear
       mmBottomOffset = 0
-      mmHeight = 21696
+      mmHeight = 19315
       mmPrintPosition = 0
       object ppLabel1: TppLabel
         DesignLayer = ppDesignLayer1
@@ -200,46 +201,36 @@ object frm_relMatriculas: Tfrm_relMatriculas
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
-        Font.Size = 20
+        Font.Size = 14
         Font.Style = [fsBold]
         FormField = False
         TextAlignment = taCentered
         Transparent = True
-        mmHeight = 8467
-        mmLeft = 46303
+        mmHeight = 5821
+        mmLeft = 62177
         mmTop = 0
-        mmWidth = 104775
+        mmWidth = 72761
         BandType = 0
         LayerName = Foreground
       end
       object ppLine1: TppLine
         DesignLayer = ppDesignLayer1
         UserName = 'Line1'
+        ParentWidth = True
         Weight = 0.750000000000000000
         mmHeight = 1323
         mmLeft = 0
-        mmTop = 14288
-        mmWidth = 285221
-        BandType = 0
-        LayerName = Foreground
-      end
-      object ppLine2: TppLine
-        DesignLayer = ppDesignLayer1
-        UserName = 'Line2'
-        Weight = 0.750000000000000000
-        mmHeight = 1323
-        mmLeft = 0
-        mmTop = 20108
-        mmWidth = 285221
+        mmTop = 10843
+        mmWidth = 197300
         BandType = 0
         LayerName = Foreground
       end
       object ppLabel3: TppLabel
         DesignLayer = ppDesignLayer1
         UserName = 'Label3'
-        Caption = 'Nome Matriculado'
+        Caption = 'Nome do Matriculado'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clRed
         Font.Name = 'Arial'
         Font.Size = 10
         Font.Style = [fsBold]
@@ -247,47 +238,27 @@ object frm_relMatriculas: Tfrm_relMatriculas
         TextAlignment = taCentered
         Transparent = True
         mmHeight = 4233
-        mmLeft = 50536
-        mmTop = 15346
-        mmWidth = 30692
-        BandType = 0
-        LayerName = Foreground
-      end
-      object ppLabel4: TppLabel
-        DesignLayer = ppDesignLayer1
-        UserName = 'Label4'
-        Caption = 'Atividade'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Name = 'Arial'
-        Font.Size = 10
-        Font.Style = [fsBold]
-        FormField = False
-        TextAlignment = taCentered
-        Transparent = True
-        mmHeight = 4233
-        mmLeft = 122238
-        mmTop = 15346
-        mmWidth = 15875
+        mmLeft = 73025
+        mmTop = 11636
+        mmWidth = 35983
         BandType = 0
         LayerName = Foreground
       end
       object ppLabel5: TppLabel
         DesignLayer = ppDesignLayer1
         UserName = 'Label5'
-        Caption = 'Cod. Matricula'
+        Caption = 'C'#243'dido da Matricula'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clRed
         Font.Name = 'Arial'
         Font.Size = 10
         Font.Style = [fsBold]
         FormField = False
-        TextAlignment = taCentered
         Transparent = True
         mmHeight = 4233
-        mmLeft = 19844
-        mmTop = 15346
-        mmWidth = 26458
+        mmLeft = 9790
+        mmTop = 11642
+        mmWidth = 33866
         BandType = 0
         LayerName = Foreground
       end
@@ -296,16 +267,16 @@ object frm_relMatriculas: Tfrm_relMatriculas
         UserName = 'Label6'
         Caption = 'Valor'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clRed
         Font.Name = 'Arial'
         Font.Size = 10
         Font.Style = [fsBold]
         FormField = False
         TextAlignment = taCentered
         Transparent = True
-        mmHeight = 4233
-        mmLeft = 160073
-        mmTop = 15346
+        mmHeight = 4234
+        mmLeft = 159836
+        mmTop = 11636
         mmWidth = 8996
         BandType = 0
         LayerName = Foreground
@@ -327,12 +298,24 @@ object frm_relMatriculas: Tfrm_relMatriculas
         BandType = 0
         LayerName = Foreground
       end
+      object ppLine2: TppLine
+        DesignLayer = ppDesignLayer1
+        UserName = 'Line2'
+        ParentWidth = True
+        Weight = 0.750000000000000000
+        mmHeight = 1323
+        mmLeft = 0
+        mmTop = 16663
+        mmWidth = 197300
+        BandType = 0
+        LayerName = Foreground
+      end
     end
     object ppDetailBand1: TppDetailBand
       Background1.Brush.Style = bsClear
       Background2.Brush.Style = bsClear
       mmBottomOffset = 0
-      mmHeight = 7144
+      mmHeight = 8467
       mmPrintPosition = 0
       object ppDBText1: TppDBText
         DesignLayer = ppDesignLayer1
@@ -344,11 +327,10 @@ object frm_relMatriculas: Tfrm_relMatriculas
         Font.Name = 'Arial'
         Font.Size = 10
         Font.Style = []
-        TextAlignment = taCentered
         Transparent = True
         DataPipelineName = 'ppDB_relMatriculas'
         mmHeight = 4498
-        mmLeft = 21431
+        mmLeft = 9790
         mmTop = 1323
         mmWidth = 23813
         BandType = 4
@@ -367,28 +349,9 @@ object frm_relMatriculas: Tfrm_relMatriculas
         Transparent = True
         DataPipelineName = 'ppDB_relMatriculas'
         mmHeight = 4498
-        mmLeft = 52123
+        mmLeft = 73053
         mmTop = 1323
         mmWidth = 42069
-        BandType = 4
-        LayerName = Foreground
-      end
-      object ppDBText3: TppDBText
-        DesignLayer = ppDesignLayer1
-        UserName = 'DBText3'
-        DataField = 'atividade'
-        DataPipeline = ppDB_relMatriculas
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Name = 'Arial'
-        Font.Size = 10
-        Font.Style = []
-        Transparent = True
-        DataPipelineName = 'ppDB_relMatriculas'
-        mmHeight = 4498
-        mmLeft = 123825
-        mmTop = 1323
-        mmWidth = 23813
         BandType = 4
         LayerName = Foreground
       end
@@ -397,7 +360,7 @@ object frm_relMatriculas: Tfrm_relMatriculas
         UserName = 'DBText4'
         DataField = 'Valor'
         DataPipeline = ppDB_relMatriculas
-        DisplayFormat = '#,0.00;-#,0.00'
+        DisplayFormat = '$#,0.00;-$#,0.00'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -406,9 +369,9 @@ object frm_relMatriculas: Tfrm_relMatriculas
         Transparent = True
         DataPipelineName = 'ppDB_relMatriculas'
         mmHeight = 4498
-        mmLeft = 161661
+        mmLeft = 158249
         mmTop = 1323
-        mmWidth = 12435
+        mmWidth = 23813
         BandType = 4
         LayerName = Foreground
       end
@@ -416,51 +379,14 @@ object frm_relMatriculas: Tfrm_relMatriculas
     object ppFooterBand1: TppFooterBand
       Background.Brush.Style = bsClear
       mmBottomOffset = 0
-      mmHeight = 14023
+      mmHeight = 7938
       mmPrintPosition = 0
-      object ppLabel2: TppLabel
-        DesignLayer = ppDesignLayer1
-        UserName = 'Label2'
-        Caption = 'Projeto Clube'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Name = 'Arial'
-        Font.Size = 14
-        Font.Style = [fsBold]
-        FormField = False
-        TextAlignment = taCentered
-        Transparent = True
-        mmHeight = 5821
-        mmLeft = 81492
-        mmTop = 1852
-        mmWidth = 33338
-        BandType = 8
-        LayerName = Foreground
-      end
-      object ppSystemVariable1: TppSystemVariable
-        DesignLayer = ppDesignLayer1
-        UserName = 'SystemVariable1'
-        VarType = vtPageNo
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Name = 'Arial'
-        Font.Size = 10
-        Font.Style = [fsBold]
-        TextAlignment = taCentered
-        Transparent = True
-        mmHeight = 4233
-        mmLeft = 97102
-        mmTop = 8731
-        mmWidth = 1852
-        BandType = 8
-        LayerName = Foreground
-      end
       object ppDBCalc1: TppDBCalc
         DesignLayer = ppDesignLayer1
         UserName = 'DBCalc1'
         DataField = 'Valor'
         DataPipeline = ppDB_relMatriculas
-        DisplayFormat = '#,0.00;-#,0.00'
+        DisplayFormat = '$#,0.00;-$#,0.00'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -469,7 +395,7 @@ object frm_relMatriculas: Tfrm_relMatriculas
         Transparent = True
         DataPipelineName = 'ppDB_relMatriculas'
         mmHeight = 4498
-        mmLeft = 160073
+        mmLeft = 158249
         mmTop = 1852
         mmWidth = 17198
         BandType = 8
@@ -478,7 +404,7 @@ object frm_relMatriculas: Tfrm_relMatriculas
       object ppLabel7: TppLabel
         DesignLayer = ppDesignLayer1
         UserName = 'Label7'
-        Caption = 'Total:'
+        Caption = 'Total Geral:'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -488,11 +414,119 @@ object frm_relMatriculas: Tfrm_relMatriculas
         TextAlignment = taCentered
         Transparent = True
         mmHeight = 4233
-        mmLeft = 147109
+        mmLeft = 136024
         mmTop = 1852
-        mmWidth = 9525
+        mmWidth = 19844
         BandType = 8
         LayerName = Foreground
+      end
+    end
+    object ppGroup1: TppGroup
+      BreakName = 'atividade'
+      DataPipeline = ppDB_relMatriculas
+      GroupFileSettings.NewFile = False
+      GroupFileSettings.EmailFile = False
+      KeepTogether = True
+      OutlineSettings.CreateNode = True
+      StartOnOddPage = False
+      UserName = 'Group1'
+      mmNewColumnThreshold = 0
+      mmNewPageThreshold = 0
+      DataPipelineName = 'ppDB_relMatriculas'
+      NewFile = False
+      object ppGroupHeaderBand1: TppGroupHeaderBand
+        Background.Brush.Style = bsClear
+        mmBottomOffset = 0
+        mmHeight = 5821
+        mmPrintPosition = 0
+        object ppLabel8: TppLabel
+          DesignLayer = ppDesignLayer1
+          UserName = 'Label8'
+          Caption = 'Atividade: '
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Name = 'Arial'
+          Font.Size = 10
+          Font.Style = [fsBold]
+          FormField = False
+          Transparent = True
+          mmHeight = 4233
+          mmLeft = 9790
+          mmTop = 530
+          mmWidth = 17992
+          BandType = 3
+          GroupNo = 0
+          LayerName = Foreground
+        end
+        object ppDBText3: TppDBText
+          DesignLayer = ppDesignLayer1
+          UserName = 'DBText3'
+          DataField = 'atividade'
+          DataPipeline = ppDB_relMatriculas
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Name = 'Arial'
+          Font.Size = 10
+          Font.Style = []
+          Transparent = True
+          DataPipelineName = 'ppDB_relMatriculas'
+          mmHeight = 4498
+          mmLeft = 28840
+          mmTop = 530
+          mmWidth = 23813
+          BandType = 3
+          GroupNo = 0
+          LayerName = Foreground
+        end
+      end
+      object ppGroupFooterBand1: TppGroupFooterBand
+        Background.Brush.Style = bsClear
+        HideWhenOneDetail = False
+        mmBottomOffset = 0
+        mmHeight = 10319
+        mmPrintPosition = 0
+        object ppLabel4: TppLabel
+          DesignLayer = ppDesignLayer1
+          UserName = 'Label4'
+          Caption = 'Total:'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Name = 'Arial'
+          Font.Size = 10
+          Font.Style = [fsBold]
+          FormField = False
+          TextAlignment = taCentered
+          Transparent = True
+          mmHeight = 4233
+          mmLeft = 146342
+          mmTop = 3175
+          mmWidth = 9525
+          BandType = 5
+          GroupNo = 0
+          LayerName = Foreground
+        end
+        object ppDBCalc2: TppDBCalc
+          DesignLayer = ppDesignLayer1
+          UserName = 'DBCalc2'
+          DataField = 'Valor'
+          DataPipeline = ppDB_relMatriculas
+          DisplayFormat = '$#,0.00;-$#,0.00'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Name = 'Arial'
+          Font.Size = 10
+          Font.Style = [fsBold]
+          ResetGroup = ppGroup1
+          Transparent = True
+          DataPipelineName = 'ppDB_relMatriculas'
+          mmHeight = 4498
+          mmLeft = 158249
+          mmTop = 3175
+          mmWidth = 17198
+          BandType = 5
+          GroupNo = 0
+          LayerName = Foreground
+        end
       end
     end
     object ppDesignLayers1: TppDesignLayers
@@ -511,6 +545,7 @@ object frm_relMatriculas: Tfrm_relMatriculas
     Top = 56
   end
   object qry_relMatriculas: TADOQuery
+    Active = True
     Connection = DM.con
     CursorType = ctStatic
     Parameters = <
@@ -547,7 +582,9 @@ object frm_relMatriculas: Tfrm_relMatriculas
       '      convert(varchar(10),M.CodigoSocio) like :codigosocio'
       
         '      AND convert(varchar(10),M.CodigoAtividade) like :codigoati' +
-        'vidade')
+        'vidade '
+      'order by '
+      '      A.nome')
     Left = 256
     object qry_relMatriculasid_matricula: TAutoIncField
       FieldName = 'id_matricula'

@@ -13,7 +13,7 @@ type
     MenuSistema: TMenuItem;
     MenuSocios: TMenuItem;
     MenuAtividades: TMenuItem;
-    Matricula1: TMenuItem;
+    MenuMatricula: TMenuItem;
     MenuRelatorios: TMenuItem;
     MenuHelp: TMenuItem;
     SistemaBackup: TMenuItem;
@@ -27,6 +27,9 @@ type
     HelpTopicos: TMenuItem;
     HelpSobre: TMenuItem;
     AtividadeCadastro: TMenuItem;
+    MenuUsuario: TMenuItem;
+    UsuarioCadastro: TMenuItem;
+    RelatorioUsuario: TMenuItem;
     procedure SistemaFinalizarClick(Sender: TObject);
     procedure HelpSobreClick(Sender: TObject);
     procedure PopupHelpSobreClick(Sender: TObject);
@@ -40,6 +43,8 @@ type
     procedure RelatoriosSociosClick(Sender: TObject);
     procedure RelatorioAtividadeClick(Sender: TObject);
     procedure RelatorioMatriculaClick(Sender: TObject);
+    procedure UsuarioCadastroClick(Sender: TObject);
+    procedure RelatorioUsuarioClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -55,7 +60,8 @@ implementation
 {$R *.dfm}
 
 uses U_login, U_sobre, U_consultaMatricula, U_consultaAtividade, U_consultaSocios, Udm,
-     U_relSocios, U_relAtividades, U_relMatriculas;
+     U_relSocios, U_relAtividades, U_relMatriculas, U_consultaUsuario,
+  U_relUsuarios;
 
 procedure Tfrm_main.AtividadeCadastroClick(Sender: TObject);
 begin
@@ -162,6 +168,17 @@ begin
   end;
 end;
 
+procedure Tfrm_main.RelatorioUsuarioClick(Sender: TObject);
+begin
+
+  with Tfrm_relUsuario.Create(Application) do
+    try
+      showmodal;
+    finally
+      free;
+    end;
+end;
+
 procedure Tfrm_main.SistemaBackupClick(Sender: TObject);
 var
   ADOCommand : TADOCommand;
@@ -198,6 +215,18 @@ begin
   finally
     frm_consultaSocios.Free;
   end;
+
+end;
+
+procedure Tfrm_main.UsuarioCadastroClick(Sender: TObject);
+begin
+
+  with Tfrm_consultaUsuario.Create(Application) do
+    try
+      showmodal;
+    finally
+      free;
+    end;
 
 end;
 

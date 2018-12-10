@@ -52,12 +52,19 @@ object frm_main: Tfrm_main
         OnClick = AtividadeCadastroClick
       end
     end
-    object Matricula1: TMenuItem
+    object MenuMatricula: TMenuItem
       Caption = '&Matricula'
       Hint = 'MenuMatricula'
       object MatriculaCadastro: TMenuItem
         Caption = '&Cadastro'
         OnClick = MatriculaCadastroClick
+      end
+    end
+    object MenuUsuario: TMenuItem
+      Caption = '&Usu'#225'rios'
+      object UsuarioCadastro: TMenuItem
+        Caption = '&Cadastro'
+        OnClick = UsuarioCadastroClick
       end
     end
     object MenuRelatorios: TMenuItem
@@ -73,6 +80,10 @@ object frm_main: Tfrm_main
       object RelatorioMatricula: TMenuItem
         Caption = '&Matriculas'
         OnClick = RelatorioMatriculaClick
+      end
+      object RelatorioUsuario: TMenuItem
+        Caption = 'Usu'#225'rios'
+        OnClick = RelatorioUsuarioClick
       end
     end
     object MenuHelp: TMenuItem

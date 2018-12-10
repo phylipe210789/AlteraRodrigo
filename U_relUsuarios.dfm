@@ -1,9 +1,10 @@
-object frm_relAtividades: Tfrm_relAtividades
+object frm_relUsuario: Tfrm_relUsuario
   Left = 0
   Top = 0
-  Caption = 'Relatorio Atividades'
-  ClientHeight = 187
-  ClientWidth = 400
+  BorderIcons = [biSystemMenu]
+  Caption = 'Relatorio de Usuarios'
+  ClientHeight = 167
+  ClientWidth = 411
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,24 +16,13 @@ object frm_relAtividades: Tfrm_relAtividades
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object lbl_relAtividades: TLabel
+  object lbl_relUsuario: TLabel
     Left = 64
     Top = 42
-    Width = 49
+    Width = 41
     Height = 13
-    Caption = 'Atividade:'
+    Caption = 'Usu'#225'rios'
     Enabled = False
-  end
-  object DBCB_relAtividades: TDBLookupComboBox
-    Left = 119
-    Top = 37
-    Width = 145
-    Height = 21
-    Enabled = False
-    KeyField = 'CodigoAtividade'
-    ListField = 'Nome'
-    ListSource = dmCadastros.dsCadAtividade
-    TabOrder = 0
   end
   object bt_gera: TButton
     Left = 72
@@ -40,8 +30,19 @@ object frm_relAtividades: Tfrm_relAtividades
     Width = 75
     Height = 25
     Caption = 'Gerar'
-    TabOrder = 1
+    TabOrder = 0
     OnClick = bt_geraClick
+  end
+  object chk_relUsuario: TCheckBox
+    Left = 280
+    Top = 41
+    Width = 65
+    Height = 17
+    Caption = 'Todos'
+    Checked = True
+    State = cbChecked
+    TabOrder = 1
+    OnClick = chk_relUsuarioClick
   end
   object br_cancela: TButton
     Left = 216
@@ -52,20 +53,90 @@ object frm_relAtividades: Tfrm_relAtividades
     TabOrder = 2
     OnClick = br_cancelaClick
   end
-  object chk_relAtividades: TCheckBox
-    Left = 280
-    Top = 41
-    Width = 65
-    Height = 17
-    Caption = 'Todos'
-    Checked = True
-    State = cbChecked
+  object DBCB_relUsuario: TDBLookupComboBox
+    Left = 119
+    Top = 37
+    Width = 145
+    Height = 21
+    Enabled = False
+    KeyField = 'id_user'
+    ListField = 'login'
+    ListSource = dmCadastros.dsCadUsuario
     TabOrder = 3
-    OnClick = chk_relAtividadesClick
   end
-  object pp_relAtividades: TppReport
+  object qry_relUsuario: TADOQuery
+    Active = True
+    Connection = DM.con
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'id_user'
+        Attributes = [paNullable]
+        DataType = ftString
+        NumericScale = 255
+        Precision = 255
+        Size = 10
+        Value = Null
+      end>
+    SQL.Strings = (
+      'select '
+      '  * '
+      'from '
+      '  login'
+      'where '
+      '  convert(varchar(10),id_user) like :id_user')
+    Left = 352
+    Top = 8
+    object qry_relUsuarioid_user: TAutoIncField
+      FieldName = 'id_user'
+      ReadOnly = True
+    end
+    object qry_relUsuariologin: TStringField
+      FieldName = 'login'
+      Size = 15
+    end
+    object qry_relUsuariosenha: TStringField
+      FieldName = 'senha'
+      Size = 50
+    end
+  end
+  object ds_relUsuario: TDataSource
+    DataSet = qry_relUsuario
+    Left = 360
+    Top = 56
+  end
+  object ppDB_relUsuario: TppDBPipeline
+    DataSource = ds_relUsuario
+    UserName = 'Usuario'
+    Left = 296
+    Top = 80
+    object ppDB_relUsuarioppField1: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'id_user'
+      FieldName = 'id_user'
+      FieldLength = 0
+      DataType = dtLongint
+      DisplayWidth = 10
+      Position = 0
+    end
+    object ppDB_relUsuarioppField2: TppField
+      FieldAlias = 'login'
+      FieldName = 'login'
+      FieldLength = 15
+      DisplayWidth = 15
+      Position = 1
+    end
+    object ppDB_relUsuarioppField3: TppField
+      FieldAlias = 'senha'
+      FieldName = 'senha'
+      FieldLength = 50
+      DisplayWidth = 50
+      Position = 2
+    end
+  end
+  object pp_relUsuario: TppReport
     AutoStop = False
-    DataPipeline = ppDB_relAtividades
+    DataPipeline = ppDB_relUsuario
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
@@ -120,7 +191,7 @@ object frm_relAtividades: Tfrm_relAtividades
     Top = 104
     Version = '16.02'
     mmColumnWidth = 197300
-    DataPipelineName = 'ppDB_relAtividades'
+    DataPipelineName = 'ppDB_relUsuario'
     object ppHeaderBand1: TppHeaderBand
       Background.Brush.Style = bsClear
       mmBottomOffset = 0
@@ -129,7 +200,7 @@ object frm_relAtividades: Tfrm_relAtividades
       object ppLabel1: TppLabel
         DesignLayer = ppDesignLayer1
         UserName = 'Label1'
-        Caption = 'RELAT'#211'RIO DE ATIVIDADES'
+        Caption = 'RELAT'#211'RIO DE USU'#193'RIOS'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -139,9 +210,9 @@ object frm_relAtividades: Tfrm_relAtividades
         TextAlignment = taCentered
         Transparent = True
         mmHeight = 8467
-        mmLeft = 48154
+        mmLeft = 51065
         mmTop = 0
-        mmWidth = 101071
+        mmWidth = 95250
         BandType = 0
         LayerName = Foreground
       end
@@ -170,7 +241,7 @@ object frm_relAtividades: Tfrm_relAtividades
       object ppLabel3: TppLabel
         DesignLayer = ppDesignLayer1
         UserName = 'Label3'
-        Caption = 'Atividade'
+        Caption = 'Usu'#225'rio'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -180,28 +251,9 @@ object frm_relAtividades: Tfrm_relAtividades
         TextAlignment = taCentered
         Transparent = True
         mmHeight = 4233
-        mmLeft = 18521
+        mmLeft = 20638
         mmTop = 15346
-        mmWidth = 15875
-        BandType = 0
-        LayerName = Foreground
-      end
-      object ppLabel4: TppLabel
-        DesignLayer = ppDesignLayer1
-        UserName = 'Label4'
-        Caption = 'Valor'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Name = 'Arial'
-        Font.Size = 10
-        Font.Style = [fsBold]
-        FormField = False
-        TextAlignment = taCentered
-        Transparent = True
-        mmHeight = 4233
-        mmLeft = 64029
-        mmTop = 15346
-        mmWidth = 8996
+        mmWidth = 12700
         BandType = 0
         LayerName = Foreground
       end
@@ -251,8 +303,8 @@ object frm_relAtividades: Tfrm_relAtividades
       object ppDBText1: TppDBText
         DesignLayer = ppDesignLayer1
         UserName = 'DBText1'
-        DataField = 'CodigoAtividade'
-        DataPipeline = ppDB_relAtividades
+        DataField = 'id_user'
+        DataPipeline = ppDB_relUsuario
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -260,7 +312,7 @@ object frm_relAtividades: Tfrm_relAtividades
         Font.Style = [fsBold]
         TextAlignment = taCentered
         Transparent = True
-        DataPipelineName = 'ppDB_relAtividades'
+        DataPipelineName = 'ppDB_relUsuario'
         mmHeight = 4233
         mmLeft = 1852
         mmTop = 794
@@ -271,39 +323,19 @@ object frm_relAtividades: Tfrm_relAtividades
       object ppDBText2: TppDBText
         DesignLayer = ppDesignLayer1
         UserName = 'DBText2'
-        DataField = 'Nome'
-        DataPipeline = ppDB_relAtividades
+        DataField = 'login'
+        DataPipeline = ppDB_relUsuario
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
         Font.Size = 10
         Font.Style = [fsBold]
         Transparent = True
-        DataPipelineName = 'ppDB_relAtividades'
+        DataPipelineName = 'ppDB_relUsuario'
         mmHeight = 4498
-        mmLeft = 18521
+        mmLeft = 20638
         mmTop = 794
         mmWidth = 42333
-        BandType = 4
-        LayerName = Foreground
-      end
-      object ppDBText3: TppDBText
-        DesignLayer = ppDesignLayer1
-        UserName = 'DBText3'
-        DataField = 'Valor'
-        DataPipeline = ppDB_relAtividades
-        DisplayFormat = '#,0.00;-#,0.00'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Name = 'Arial'
-        Font.Size = 10
-        Font.Style = [fsBold]
-        Transparent = True
-        DataPipelineName = 'ppDB_relAtividades'
-        mmHeight = 4498
-        mmLeft = 64029
-        mmTop = 794
-        mmWidth = 17727
         BandType = 4
         LayerName = Foreground
       end
@@ -359,78 +391,6 @@ object frm_relAtividades: Tfrm_relAtividades
       end
     end
     object ppParameterList1: TppParameterList
-    end
-  end
-  object ppDB_relAtividades: TppDBPipeline
-    DataSource = ds_relAtividades
-    UserName = 'Atividades'
-    Left = 296
-    Top = 136
-    object ppDB_relAtividadesppField1: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'CodigoAtividade'
-      FieldName = 'CodigoAtividade'
-      FieldLength = 0
-      DataType = dtLongint
-      DisplayWidth = 10
-      Position = 0
-    end
-    object ppDB_relAtividadesppField2: TppField
-      FieldAlias = 'Nome'
-      FieldName = 'Nome'
-      FieldLength = 25
-      DisplayWidth = 25
-      Position = 1
-    end
-    object ppDB_relAtividadesppField3: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'Valor'
-      FieldName = 'Valor'
-      FieldLength = 2
-      DataType = dtDouble
-      DisplayWidth = 10
-      Position = 2
-    end
-  end
-  object ds_relAtividades: TDataSource
-    DataSet = qry_relAtividade
-    Left = 352
-    Top = 40
-  end
-  object qry_relAtividade: TADOQuery
-    Active = True
-    Connection = DM.con
-    CursorType = ctStatic
-    Parameters = <
-      item
-        Name = 'codigoatividade'
-        Attributes = [paNullable]
-        DataType = ftString
-        NumericScale = 255
-        Precision = 255
-        Size = 10
-        Value = Null
-      end>
-    SQL.Strings = (
-      'select '
-      '  * '
-      'from '
-      '  atividades'
-      'where '
-      '  convert(varchar(10),CodigoAtividade) like :codigoatividade')
-    Left = 344
-    object qry_relAtividadeCodigoAtividade: TAutoIncField
-      FieldName = 'CodigoAtividade'
-      ReadOnly = True
-    end
-    object qry_relAtividadeNome: TStringField
-      FieldName = 'Nome'
-      Size = 25
-    end
-    object qry_relAtividadeValor: TBCDField
-      FieldName = 'Valor'
-      Precision = 9
-      Size = 2
     end
   end
 end
