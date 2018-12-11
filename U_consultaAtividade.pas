@@ -25,6 +25,7 @@ type
     qryCadAtividadeCodigoAtividade: TAutoIncField;
     qryCadAtividadeNome: TStringField;
     qryCadAtividadeValor: TBCDField;
+    qryCadAtividadecodAtiv: TIntegerField;
     procedure bt_cadAtividadeClick(Sender: TObject);
     procedure bt_altAtividadeClick(Sender: TObject);
     procedure bt_excAtividadeClick(Sender: TObject);
@@ -52,16 +53,16 @@ begin
       ShowMessage('Não possui dados para alteração.');
       edit_pesquisa.SetFocus;
     end
-    else begin
-        qryCadAtividade.Open;
-        qryCadAtividade.Edit;
-      with Tfrm_novo_alt_Atividade.Create(Application) do
+  else begin
+    qryCadAtividade.Open;
+    qryCadAtividade.Edit;
+    with Tfrm_novo_alt_Atividade.Create(Application) do
       try
         showmodal;
       finally
         free;
-      end;
     end;
+  end;
 end;
 
 procedure Tfrm_consultaAtividade.bt_cadAtividadeClick(Sender: TObject);
@@ -70,13 +71,13 @@ begin
   if not qryCadAtividade.Active then
     qryCadAtividade.Open;
 
-    with Tfrm_novo_alt_Atividade.Create(Application) do
-      try
-        qryCadAtividade.Insert;
-        ShowModal;
-      finally
-        free;
-      end;
+  with Tfrm_novo_alt_Atividade.Create(Application) do
+    try
+      qryCadAtividade.Insert;
+      ShowModal;
+    finally
+      free;
+    end;
 
 end;
 
@@ -88,16 +89,15 @@ procedure Tfrm_consultaAtividade.bt_excAtividadeClick(Sender: TObject);
 begin
 
  try
-
   if not qryCadAtividade.Active and qryCadAtividade.IsEmpty then
   begin
-     ShowMessage('Não possui dados para exclusão.');
-     edit_pesquisa.SetFocus;
+    ShowMessage('Não possui dados para exclusão.');
+    edit_pesquisa.SetFocus;
   end
   else begin
-      qryCadAtividade.Open;
-      if MessageDlg(msg+DS.DataSet.FieldByName('Nome').AsString+' ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-      qryCadAtividade.Delete;
+    qryCadAtividade.Open;
+    if MessageDlg(msg+DS.DataSet.FieldByName('Nome').AsString+' ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+    qryCadAtividade.Delete;
   end;
 
  except
@@ -108,21 +108,27 @@ begin
 end;
 
 procedure Tfrm_consultaAtividade.bt_pesqAtividadeClick(Sender: TObject);
-  const
-  sql_base = 'select * from atividades where ';
+const
+  SQL_BASE =
+    ' SELECT '+
+    '   codAtiv, CodigoAtividade, Nome, Valor '+
+    ' FROM '+
+    '   ATIVIDADES '+
+    ' WHERE ';
 
 begin
   qryCadAtividade.Close;
   qryCadAtividade.SQL.Clear;
-  qryCadAtividade.SQL.Add(sql_base);
+  qryCadAtividade.SQL.Add(SQL_BASE);
+
   case rg_filtros.ItemIndex of
   0:Begin
-      qryCadAtividade.SQL.Add(' convert(varchar(10), CodigoAtividade) like :codigo order by CodigoAtividade');
+      qryCadAtividade.SQL.Add(' convert(varchar(10), codAtiv) like :codigo order by codAtiv');
       qryCadAtividade.Parameters[0].Value := edit_pesquisa.Text+'%';
     end;
   1:Begin
-     qryCadAtividade.SQL.Add(' Nome like :Nome order by Nome ');
-     qryCadAtividade.Parameters[0].Value := edit_pesquisa.Text+'%';
+      qryCadAtividade.SQL.Add(' Nome like :Nome order by Nome ');
+      qryCadAtividade.Parameters[0].Value := edit_pesquisa.Text+'%';
     End;
   end;
 
@@ -130,8 +136,8 @@ begin
 
   if qryCadAtividade.IsEmpty then
   Begin
-     ShowMessage('Não possui dados.');
-     edit_pesquisa.SetFocus;
+    ShowMessage('Não possui dados.');
+    edit_pesquisa.SetFocus;
   End
   else
     DBGrid_Atividades.SetFocus;

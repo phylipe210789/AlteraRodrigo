@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls,
-  Data.DB;
+  Data.DB, Vcl.ImgList, Data.Win.ADODB;
 
 type
   Tfrm_novo_alt_Socio = class(TForm)
@@ -33,6 +33,10 @@ type
     lb_ruaSocio: TLabel;
     lb_nomeSocio: TLabel;
     DS: TDataSource;
+    Icones: TImageList;
+    qryContCodigo: TADOQuery;
+    qryContCodigoValorMax: TIntegerField;
+    dsContador: TDataSource;
     procedure bt_salvarSocioClick(Sender: TObject);
     procedure bt_cancelSocioClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -61,67 +65,70 @@ procedure Tfrm_novo_alt_Socio.bt_salvarSocioClick(Sender: TObject);
 begin
 
   if DBedit_nomeSocio.Text = '' then
-    begin
-      ShowMessage('O campo "Nome" não pode ficar vazio!');
-      DBedit_nomeSocio.SetFocus;
-    end
-    else if DBedit_cpfSocio.Text = '' then
-    begin
-      ShowMessage('O campo "CPF" não pode ficar vazio!');
-      DBedit_cpfSocio.SetFocus;
-    end
-      else if DBedit_telSocio.Text = '' then
-      begin
-        ShowMessage('O campo "Tel." não pode ficar vazio!');
-        DBedit_telSocio.SetFocus;
-      end
-        else if DBedit_ruaSocio.Text = '' then
-        begin
-          ShowMessage('O campo "Rua" não pode ficar vazio!');
-          DBedit_ruaSocio.SetFocus;
-        end
-          else if DBedit_compSocio.Text = '' then
-          begin
-            ShowMessage('O campo "Comp." não pode ficar vazio!');
-            DBedit_compSocio.SetFocus;
-          end
-          else if DBedit_bairroSocio.Text = '' then
-            begin
-              ShowMessage('O campo "Bairro" não pode ficar vazio!');
-              DBedit_bairroSocio.SetFocus;
-            end
-              else if DBedit_cidSocio.Text = '' then
-              begin
-                ShowMessage('O campo "Cidade" não pode ficar vazio!');
-                DBedit_cidSocio.SetFocus;
-              end
-                else if DBedit_ufSocio.Text = '' then
-                begin
-                  ShowMessage('O campo "U.F." não pode ficar vazio!');
-                  DBedit_ufSocio.SetFocus;
-                end
-                  else if DBedit_cepSocio.Text = '' then
-                  begin
-                    ShowMessage('O campo "CEP" não pode ficar vazio!');
-                    DBedit_cepSocio.SetFocus;
-                  end
-                    else if DS.State in [dsInsert] then
-                    begin
-                      DS.DataSet.Post;
-                      ShowMessage('Cadastro Realizado com Sucesso!');
-                      Close;
-                    end
-                      else if DS.State in [dsEdit] then
-                      begin
-                        DS.DataSet.Post;
-                        ShowMessage('Cadastro Alterado com Sucesso!');
-                        Close;
-                      end;
+  begin
+    ShowMessage('O campo "Nome" não pode ficar vazio!');
+    DBedit_nomeSocio.SetFocus;
+  end
+  else if DBedit_cpfSocio.Text = '' then
+  begin
+    ShowMessage('O campo "CPF" não pode ficar vazio!');
+    DBedit_cpfSocio.SetFocus;
+  end
+  else if DBedit_telSocio.Text = '' then
+  begin
+    ShowMessage('O campo "Tel." não pode ficar vazio!');
+    DBedit_telSocio.SetFocus;
+  end
+  else if DBedit_ruaSocio.Text = '' then
+  begin
+    ShowMessage('O campo "Rua" não pode ficar vazio!');
+    DBedit_ruaSocio.SetFocus;
+  end
+  else if DBedit_compSocio.Text = '' then
+  begin
+    ShowMessage('O campo "Comp." não pode ficar vazio!');
+    DBedit_compSocio.SetFocus;
+  end
+  else if DBedit_bairroSocio.Text = '' then
+  begin
+    ShowMessage('O campo "Bairro" não pode ficar vazio!');
+    DBedit_bairroSocio.SetFocus;
+  end
+  else if DBedit_cidSocio.Text = '' then
+  begin
+    ShowMessage('O campo "Cidade" não pode ficar vazio!');
+    DBedit_cidSocio.SetFocus;
+  end
+  else if DBedit_ufSocio.Text = '' then
+  begin
+    ShowMessage('O campo "U.F." não pode ficar vazio!');
+    DBedit_ufSocio.SetFocus;
+  end
+  else if DBedit_cepSocio.Text = '' then
+  begin
+    ShowMessage('O campo "CEP" não pode ficar vazio!');
+    DBedit_cepSocio.SetFocus;
+  end
+  else if DS.State in [dsInsert] then
+  begin
+    qryContCodigo.Open;
+    ds.DataSet.FieldByName('codSoc').Value :=  qryContCodigoValorMax.Value;
+    DS.DataSet.Post;
+    qryContCodigo.Close;
+    ShowMessage('Cadastro Realizado com Sucesso!');
+    Close;
+  end
+  else if DS.State in [dsEdit] then
+  begin
+    DS.DataSet.Post;
+    ShowMessage('Cadastro Alterado com Sucesso!');
+    Close;
+  end;
 
 end;
 
 procedure Tfrm_novo_alt_Socio.FormClose(Sender: TObject;
-  var Action: TCloseAction);
+var Action: TCloseAction);
 begin
 
   if DS.State in [dsInsert, dsEdit] then
@@ -131,10 +138,12 @@ end;
 
 procedure Tfrm_novo_alt_Socio.FormCreate(Sender: TObject);
 begin
+
   if DS.State in [dsEdit] then
-  Caption := 'Alteração de Socio'
+    Caption := 'Alteração de Socio'
   else
     Caption := 'Cadastro de Socio';
+
 end;
 
 end.

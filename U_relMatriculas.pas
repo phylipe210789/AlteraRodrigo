@@ -8,7 +8,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Data.Win.ADODB, ppDB, ppDBPipe,
   ppParameter, ppDesignLayer, ppVar, ppBands, ppCtrls, ppPrnabl, ppClass,
   ppCache, ppComm, ppRelatv, ppProd, ppReport, Vcl.Grids, Vcl.DBGrids,
-  Vcl.StdCtrls, Vcl.DBCtrls;
+  Vcl.StdCtrls, Vcl.DBCtrls, Vcl.ImgList;
 
 type
   Tfrm_relMatriculas = class(TForm)
@@ -51,8 +51,10 @@ type
     ppLabel8: TppLabel;
     ppDBCalc2: TppDBCalc;
     ppDBText4: TppDBText;
-    ppLabel4: TppLabel;
     ppLine2: TppLine;
+    Icones: TImageList;
+    ppLine3: TppLine;
+    ppLine4: TppLine;
     procedure chk_relSociosClick(Sender: TObject);
     procedure chk_relAtividadesClick(Sender: TObject);
     procedure br_cancelaClick(Sender: TObject);
@@ -76,72 +78,78 @@ uses U_DmCadastros;
 
 procedure Tfrm_relMatriculas.br_cancelaClick(Sender: TObject);
 begin
-      Close;
+  Close;
 end;
 
 procedure Tfrm_relMatriculas.bt_geraClick(Sender: TObject);
 begin
-          qry_relMatriculas.Close;
+  qry_relMatriculas.Close;
 
-      if chk_relSocios.Checked and chk_relAtividades.Checked then
-      begin
-          qry_relMatriculas.Parameters.ParamByName('codigosocio').Value := '%';
-          qry_relMatriculas.Parameters.ParamByName('codigoatividade').Value := '%';
-      end
-      else if not chk_relSocios.Checked and chk_relAtividades.Checked then
-      begin
-          qry_relMatriculas.Parameters.ParamByName('codigosocio').Value := DBCB_relSocios.KeyValue;
-          qry_relMatriculas.Parameters.ParamByName('codigoatividade').Value := '%';
-      end
-          else if chk_relSocios.Checked and not chk_relAtividades.Checked then
-      begin
-          qry_relMatriculas.Parameters.ParamByName('codigoatividade').Value := DBCB_relAtividades.KeyValue;
-          qry_relMatriculas.Parameters.ParamByName('codigosocio').Value := '%';
-      end;
+  if chk_relSocios.Checked and chk_relAtividades.Checked then
+  begin
+    qry_relMatriculas.Parameters.ParamByName('codigosocio').Value := '%';
+    qry_relMatriculas.Parameters.ParamByName('codigoatividade').Value := '%';
+  end
+  else if not chk_relSocios.Checked and chk_relAtividades.Checked then
+  begin
+    qry_relMatriculas.Parameters.ParamByName('codigosocio').Value := DBCB_relSocios.KeyValue;
+    qry_relMatriculas.Parameters.ParamByName('codigoatividade').Value := '%';
+  end
+  else if chk_relSocios.Checked and not chk_relAtividades.Checked then
+  begin
+    qry_relMatriculas.Parameters.ParamByName('codigoatividade').Value := DBCB_relAtividades.KeyValue;
+    qry_relMatriculas.Parameters.ParamByName('codigosocio').Value := '%';
+  end;
 
-          qry_relMatriculas.Open;
+  qry_relMatriculas.Open;
 
-      if qry_relMatriculas.IsEmpty then
-         ShowMessage('Não a dados para ser impresso!')
-      else
-         pp_relMatriculas.Print;
+  if qry_relMatriculas.IsEmpty then
+    ShowMessage('Não a dados para ser impresso!')
+  else
+    pp_relMatriculas.Print;
 
 end;
 
 procedure Tfrm_relMatriculas.chk_relAtividadesClick(Sender: TObject);
 begin
-        DBCB_relAtividades.Enabled := not TCheckBox(Sender).Checked;
-        lbl_relAtividades.Enabled  := not TCheckBox(Sender).Checked;
 
-        if not TCheckBox(Sender).Checked then
-        begin
-        DBCB_relAtividades.SetFocus;
-        chk_relSocios.Enabled := TCheckBox(Sender).Checked
-        end
-          else
-             chk_relSocios.Enabled := True;
+  DBCB_relAtividades.Enabled := not TCheckBox(Sender).Checked;
+  lbl_relAtividades.Enabled  := not TCheckBox(Sender).Checked;
+
+  if not TCheckBox(Sender).Checked then
+  begin
+    DBCB_relAtividades.SetFocus;
+    chk_relSocios.Enabled := TCheckBox(Sender).Checked
+  end
+  else
+    chk_relSocios.Enabled := True;
+
 end;
 
 procedure Tfrm_relMatriculas.chk_relSociosClick(Sender: TObject);
 begin
-        DBCB_relSocios.Enabled := not TCheckBox(Sender).Checked;
-        lbl_relSocios.Enabled  := not TCheckBox(Sender).Checked;
 
-        if not TCheckBox(Sender).Checked then
-        begin
-        DBCB_relSocios.SetFocus;
-        chk_relAtividades.Enabled := False;
-        end
-          else
-              chk_relAtividades.Enabled := True;
+  DBCB_relSocios.Enabled := not TCheckBox(Sender).Checked;
+  lbl_relSocios.Enabled  := not TCheckBox(Sender).Checked;
+
+  if not TCheckBox(Sender).Checked then
+  begin
+    DBCB_relSocios.SetFocus;
+    chk_relAtividades.Enabled := False;
+  end
+  else
+  chk_relAtividades.Enabled := True;
+
 end;
 
 procedure Tfrm_relMatriculas.FormCreate(Sender: TObject);
 begin
+
   dmCadastros.qryCadSocio.Close;
   dmCadastros.qryCadSocio.Open;
   dmCadastros.qryCadAtividade.Close;
   dmCadastros.qryCadAtividade.Open;
+
 end;
 
 end.

@@ -4,7 +4,7 @@ object frm_consultaSocios: Tfrm_consultaSocios
   BorderIcons = [biSystemMenu]
   Caption = 'Consulta de Socios'
   ClientHeight = 363
-  ClientWidth = 900
+  ClientWidth = 888
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,21 +18,79 @@ object frm_consultaSocios: Tfrm_consultaSocios
   object DBGrid_Socios: TDBGrid
     Left = 0
     Top = 36
-    Width = 900
+    Width = 888
     Height = 258
     Align = alClient
     DataSource = DS
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'codSoc'
+        Title.Caption = 'C'#243'digo'
+        Width = 42
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Nome'
+        Width = 129
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Endereco'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Complemento'
+        Title.Caption = 'Comp.'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Bairro'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Cidade'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Estado'
+        Title.Caption = 'UF'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CEP'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Telefone'
+        Title.Caption = 'Tel.'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CPF'
+        Visible = True
+      end>
   end
   object ToolBar1: TToolBar
     Left = 0
     Top = 0
-    Width = 900
+    Width = 888
     Height = 36
     AutoSize = True
     ButtonHeight = 36
@@ -44,6 +102,7 @@ object frm_consultaSocios: Tfrm_consultaSocios
     ParentColor = False
     ShowCaptions = True
     TabOrder = 1
+    ExplicitWidth = 878
     object bt_cadSocio: TToolButton
       Left = 0
       Top = 0
@@ -69,16 +128,19 @@ object frm_consultaSocios: Tfrm_consultaSocios
   object Panel1: TPanel
     Left = 0
     Top = 294
-    Width = 900
+    Width = 888
     Height = 69
     Align = alBottom
     TabOrder = 2
+    ExplicitWidth = 878
     object bt_pesqSoscio: TButton
       Left = 424
       Top = 26
       Width = 75
       Height = 24
       Caption = '&Pesquisar'
+      ImageIndex = 5
+      Images = Icones
       TabOrder = 0
       OnClick = bt_pesqSoscioClick
     end
@@ -112,7 +174,7 @@ object frm_consultaSocios: Tfrm_consultaSocios
     Left = 336
     Top = 64
     Bitmap = {
-      494C01011C00C001580610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011C00C001880610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1220,6 +1282,9 @@ object frm_consultaSocios: Tfrm_consultaSocios
     object qryCadSocioCPF: TStringField
       FieldName = 'CPF'
       Size = 11
+    end
+    object qryCadSociocodSoc: TIntegerField
+      FieldName = 'codSoc'
     end
   end
 end

@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Data.Win.ADODB, Vcl.StdCtrls,
-  Vcl.Mask;
+  Vcl.Mask, Vcl.ImgList;
 
 type
   Tfrm_login = class(TForm)
@@ -20,6 +20,8 @@ type
     qryloginsenha: TStringField;
     Edit2: TEdit;
     Button2: TButton;
+    Icones: TImageList;
+    qryloginnivel: TIntegerField;
     procedure Edit1KeyPress(Sender: TObject; var Key: Char);
     procedure Edit2KeyPress(Sender: TObject; var Key: Char);
     procedure Button1KeyPress(Sender: TObject; var Key: Char);
@@ -42,53 +44,94 @@ implementation
 uses Udm, U_main;
 
 procedure Tfrm_login.Button1Click(Sender: TObject);
-begin
+//const
+//  SQL_LOGIN =
+//    ' SELECT '+
+//    '   ID_USER, LOGIN, SENHA, NIVEL '+
+//    ' FROM '+
+//    '   LOGIN '+
+//    ' WHERE '+
+//    '   LOGIN = :LOGIN AND SENHA = :SENHA ';
 
+const
+  SQL_LOGIN =
+    ' SELECT '+
+    '   ID_USER, LOGIN, SENHA, NIVEL '+
+    ' FROM '+
+    '   LOGIN '+
+    ' WHERE '+
+    '   LOGIN = ''%s'' AND SENHA = ''%s'' ';
+
+var
+  Ssql: string;
+
+begin
+  Ssql := Format(SQL_LOGIN, [Edit1.Text, Edit2.Text]);
   qrylogin.SQL.Clear;
-      qrylogin.SQL.Add('select * from login where login='''+edit1.Text+''' and senha='''+Edit2.Text+''' ');
-      qrylogin.Open;
-      if qrylogin.IsEmpty then
-      begin
-          ShowMessage('Login ou Senha incorretos!');
-          Edit1.SetFocus;
-          Edit1.Clear;
-          Edit2.Clear;
-      end
-      else
-        ModalResult := mrOk;
+  qrylogin.SQL.Add(Ssql);
+
+//  qrylogin.Parameters[0].Value := Edit1.Text;
+//  qrylogin.Parameters[1].Value := Edit2.Text;
+
+  qrylogin.Open;
+
+  if qrylogin.IsEmpty then
+  begin
+    ShowMessage('Login ou Senha incorretos!');
+    Edit1.SetFocus;
+    Edit1.Clear;
+    Edit2.Clear;
+  end
+  else if qryloginnivel.Value = 0 then
+  begin
+    frm_main.MenuUsuario.Visible := True;
+    ModalResult := mrOk;
+  end
+  else begin
+    frm_main.MenuUsuario.Visible := False;
+    ModalResult := mrOk;
+  end;
 
 end;
 
 procedure Tfrm_login.Button2Click(Sender: TObject);
 begin
+
   close;
+
 end;
 
 procedure Tfrm_login.Button1KeyPress(Sender: TObject; var Key: Char);
 begin
-          if key = #13 then
-          begin
-            key := #0;
-            perform(wm_nextdlgctl,0,0);
-          end;
+
+  if key = #13 then
+  begin
+    key := #0;
+    perform(wm_nextdlgctl,0,0);
+  end;
+
 end;
 
 procedure Tfrm_login.Edit1KeyPress(Sender: TObject; var Key: Char);
 begin
-        if key = #13 then
-          begin
-            key := #0;
-            perform(wm_nextdlgctl,0,0);
-          end;
+
+  if key = #13 then
+  begin
+    key := #0;
+    perform(wm_nextdlgctl,0,0);
+  end;
+
 end;
 
 procedure Tfrm_login.Edit2KeyPress(Sender: TObject; var Key: Char);
 begin
-          if key = #13 then
-          begin
-            key := #0;
-            perform(wm_nextdlgctl,0,0);
-          end;
+
+  if key = #13 then
+  begin
+    key := #0;
+    perform(wm_nextdlgctl,0,0);
+  end;
+
 end;
 
 end.

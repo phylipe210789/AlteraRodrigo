@@ -3,7 +3,7 @@ unit U_Sobre;
 interface
 
 uses WinApi.Windows, System.SysUtils, System.Classes, Vcl.Graphics,
-  Vcl.Forms, Vcl.Controls, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls;
+  Vcl.Forms, Vcl.Controls, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ImgList;
 
 type
   Tfrm_sobre = class(TForm)
@@ -14,6 +14,8 @@ type
     Copyright: TLabel;
     Comments: TLabel;
     OKButton: TButton;
+    Icones: TImageList;
+    procedure OKButtonClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -26,6 +28,13 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure Tfrm_sobre.OKButtonClick(Sender: TObject);
+begin
+
+  Close;
+
+end;
 
 end.
  

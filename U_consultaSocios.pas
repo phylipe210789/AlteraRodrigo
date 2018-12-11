@@ -32,6 +32,7 @@ type
     qryCadSocioTelefone: TStringField;
     qryCadSocioCPF: TStringField;
     rg_filtros: TRadioGroup;
+    qryCadSociocodSoc: TIntegerField;
     procedure bt_excSoscioClick(Sender: TObject);
     procedure bt_cadSocioClick(Sender: TObject);
     procedure bt_altSocioClick(Sender: TObject);
@@ -54,78 +55,82 @@ uses Udm, U_novo_alt_Socio;
 
 procedure Tfrm_consultaSocios.bt_cadSocioClick(Sender: TObject);
 begin
-
-   if not (qryCadSocio.Active)then
+  if not (qryCadSocio.Active)then
     qryCadSocio.Open;
 
-   with Tfrm_novo_alt_Socio.Create(Application) do
-   try
-     qryCadSocio.Insert;
-     showmodal;
-   finally
-     free;
-   end;
+  with Tfrm_novo_alt_Socio.Create(Application) do
+    try
+      qryCadSocio.Insert;
+      showmodal;
+    finally
+      free;
+    end;
+
 end;
 
 procedure Tfrm_consultaSocios.bt_altSocioClick(Sender: TObject);
 begin
-
   if not qryCadSocio.Active and qryCadSocio.IsEmpty then
-    begin
-      //qryCadSocio.Open;
-      ShowMessage('Não possui dados para alteração.');
-      edit_pesquisa.SetFocus;
-    end
-    else begin
-        qryCadSocio.Open;
-        qryCadSocio.Edit;
-      with Tfrm_novo_alt_Socio.Create(Application) do
+  begin
+    //qryCadSocio.Open;
+    ShowMessage('Não possui dados para alteração.');
+    edit_pesquisa.SetFocus;
+  end
+  else begin
+    qryCadSocio.Open;
+    qryCadSocio.Edit;
+    with Tfrm_novo_alt_Socio.Create(Application) do
       try
         showmodal;
       finally
         free;
       end;
-    end;
+  end;
+
 end;
 
 procedure Tfrm_consultaSocios.bt_excSoscioClick(Sender: TObject);
 const
-
-  msg = 'Deseja realmente excluir o Socio: ';
+  MSG = 'Deseja realmente excluir o Socio: ';
 
 begin
-
- try
-
-  if not qryCadSocio.Active and qryCadSocio.IsEmpty then
-  begin
-     ShowMessage('Não possui dados para exclusão.');
-     edit_pesquisa.SetFocus;
-  end
-  else begin
+  try
+    if not qryCadSocio.Active and qryCadSocio.IsEmpty then
+    begin
+      ShowMessage('Não possui dados para exclusão.');
+      edit_pesquisa.SetFocus;
+    end
+    else begin
       qryCadSocio.Open;
-      if MessageDlg(msg+DS.DataSet.FieldByName('Nome').AsString+' ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-      qryCadSocio.Delete;
+      if MessageDlg(MSG+DS.DataSet.FieldByName('Nome').AsString+' ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+        qryCadSocio.Delete;
+    end;
+
+  except
+    MessageDlg('Esse registro possui movimentações e não pode ser excluido', mtError, mbOKCancel, 0);
+
   end;
 
- except
-
-  MessageDlg('Esse registro possui movimentações e não pode ser excluido', mtError, mbOKCancel, 0);
-
- end;
 end;
 
 procedure Tfrm_consultaSocios.bt_pesqSoscioClick(Sender: TObject);
 const
-  sql_base = 'select * from socios where ';
+  SQL_BASE =
+    ' SELECT '+
+    '   codSoc, CodigoSocio, Nome, Endereco, Complemento, Bairro, Cidade, '+
+    '   Estado, CEP, Telefone, CPF '+
+    ' FROM '+
+    '   SOCIOS '+
+    ' WHERE ';
+
 begin
 
   qryCadSocio.Close;
   qryCadSocio.SQL.Clear;
-  qryCadSocio.SQL.Add(sql_base);
+  qryCadSocio.SQL.Add(SQL_BASE);
   case rg_filtros.ItemIndex of
   0:Begin
-      qryCadSocio.SQL.Add(' convert(varchar(10), CodigoSocio) like :codigo order by CodigoSocio');
+      qryCadSocio.SQL.Add(' convert(varchar(10), codSoc) like :codigo order by codSoc');
       qryCadSocio.Parameters[0].Value := edit_pesquisa.Text+'%';
     end;
   1:Begin
@@ -138,8 +143,8 @@ begin
 
   if qryCadSocio.IsEmpty then
   Begin
-     ShowMessage('Não possui dados.');
-     edit_pesquisa.SetFocus;
+    ShowMessage('Não possui dados.');
+    edit_pesquisa.SetFocus;
   End
   else
     DBGrid_Socios.SetFocus;

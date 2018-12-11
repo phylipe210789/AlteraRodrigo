@@ -24,6 +24,7 @@ type
     qryCadLoginid_user: TAutoIncField;
     qryCadLoginlogin: TStringField;
     qryCadLoginsenha: TStringField;
+    qryCadLoginnivel: TIntegerField;
     procedure bt_cadUsuarioClick(Sender: TObject);
     procedure bt_excUsuarioClick(Sender: TObject);
     procedure bt_altUsuarioClick(Sender: TObject);
@@ -45,22 +46,21 @@ uses U_novo_alt_Usuario;
 
 procedure Tfrm_consultaUsuario.bt_altUsuarioClick(Sender: TObject);
 begin
-
   if not qryCadLogin.Active and qryCadLogin.IsEmpty then
-    begin
-      ShowMessage('Não possui dados para alteração.');
-      edit_pesquisa.SetFocus;
-    end
-    else begin
-        qryCadLogin.Open;
-        qryCadLogin.Edit;
-      with Tfrm_novo_alt_Usuario.Create(Application) do
+  begin
+    ShowMessage('Não possui dados para alteração.');
+    edit_pesquisa.SetFocus;
+  end
+  else begin
+    qryCadLogin.Open;
+    qryCadLogin.Edit;
+    with Tfrm_novo_alt_Usuario.Create(Application) do
       try
         showmodal;
       finally
         free;
       end;
-    end;
+  end;
 
 end;
 
@@ -70,51 +70,56 @@ begin
   if not (qryCadLogin.Active)then
     qryCadLogin.Open;
 
-   with Tfrm_novo_alt_Usuario.Create(Application) do
-   try
-     qryCadLogin.Insert;
-     showmodal;
-   finally
-     free;
-   end;
+  with Tfrm_novo_alt_Usuario.Create(Application) do
+    try
+      qryCadLogin.Insert;
+      showmodal;
+    finally
+      free;
+    end;
 
 end;
 
 procedure Tfrm_consultaUsuario.bt_excUsuarioClick(Sender: TObject);
 const
 
-  msg = 'Deseja realmente excluir o Usuário: ';
+  MSG = 'Deseja realmente excluir o Usuário: ';
 
 begin
 
- try
-
-  if not qryCadLogin.Active and qryCadLogin.IsEmpty then
-  begin
-     ShowMessage('Não possui dados para exclusão.');
-     edit_pesquisa.SetFocus;
-  end
-  else begin
+  try
+    if not qryCadLogin.Active and qryCadLogin.IsEmpty then
+    begin
+      ShowMessage('Não possui dados para exclusão.');
+      edit_pesquisa.SetFocus;
+    end
+    else begin
       qryCadLogin.Open;
-      if MessageDlg(msg+dsLogin.DataSet.FieldByName('login').AsString+' ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-      qryCadLogin.Delete;
+        if MessageDlg(MSG+dsLogin.DataSet.FieldByName('login').AsString+' ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+          qryCadLogin.Delete;
+    end;
+
+  except
+
+    MessageDlg('Esse registro possui movimentações e não pode ser excluido', mtError, mbOKCancel, 0);
+
   end;
 
- except
-
-  MessageDlg('Esse registro possui movimentações e não pode ser excluido', mtError, mbOKCancel, 0);
-
- end;
 end;
 
 procedure Tfrm_consultaUsuario.bt_pesqLoginClick(Sender: TObject);
 const
-  sql_base = 'select * from login where ';
+  SQL_BASE =
+    ' SELECT '+
+    '   ID_USER, LOGIN, SENHA, NIVEL '+
+    ' FROM '+
+    '   LOGIN '+
+    ' WHERE ';
 begin
 
   qryCadLogin.Close;
   qryCadLogin.SQL.Clear;
-  qryCadLogin.SQL.Add(sql_base);
+  qryCadLogin.SQL.Add(SQL_BASE);
 
   case rg_filtros.ItemIndex of
   0:Begin
@@ -131,11 +136,12 @@ begin
 
   if qryCadLogin.IsEmpty then
   Begin
-     ShowMessage('Não possui dados.');
-     edit_pesquisa.SetFocus;
+    ShowMessage('Não possui dados.');
+    edit_pesquisa.SetFocus;
   End
   else
     DBGrid_Login.SetFocus;
+
 end;
 
 end.

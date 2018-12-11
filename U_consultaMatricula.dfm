@@ -4,7 +4,7 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
   BorderIcons = [biSystemMenu]
   Caption = 'Consulta de Matriculas'
   ClientHeight = 310
-  ClientWidth = 511
+  ClientWidth = 499
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,7 +18,7 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
   object ToolBar1: TToolBar
     Left = 0
     Top = 0
-    Width = 511
+    Width = 499
     Height = 36
     AutoSize = True
     ButtonHeight = 36
@@ -55,21 +55,23 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
   object Panel1: TPanel
     Left = 0
     Top = 241
-    Width = 511
+    Width = 499
     Height = 69
     Align = alBottom
     TabOrder = 1
     object bt_pesqMat: TButton
-      Left = 424
+      Left = 408
       Top = 26
       Width = 75
       Height = 24
       Caption = '&Pesquisar'
+      ImageIndex = 5
+      Images = Icones
       TabOrder = 0
       OnClick = bt_pesqMatClick
     end
     object edit_pesquisa: TEdit
-      Left = 216
+      Left = 200
       Top = 29
       Width = 185
       Height = 21
@@ -92,10 +94,11 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
   object DBGrid_Matriculas: TDBGrid
     Left = 0
     Top = 36
-    Width = 511
+    Width = 499
     Height = 205
     Align = alClient
     DataSource = ds4
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     TabOrder = 2
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -106,19 +109,26 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
       item
         Expanded = False
         FieldName = 'id_matricula'
-        Title.Caption = 'Codigo Matricula'
+        Title.Caption = 'C'#243'd. Matricula'
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'socio'
-        Width = 278
+        Width = 145
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'atividade'
-        Width = 106
+        Width = 130
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'dtCadMat'
+        Title.Caption = 'Dt. Cadastro'
+        Width = 119
         Visible = True
       end>
   end
@@ -126,7 +136,7 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
     Left = 416
     Top = 104
     Bitmap = {
-      494C01011C00C001A00610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011C00C001C40610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1276,7 +1286,7 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
     Parameters = <>
     SQL.Strings = (
       'select * from matriculas')
-    Left = 328
+    Left = 312
     Top = 104
     object qry4id_matricula: TAutoIncField
       FieldName = 'id_matricula'
@@ -1312,11 +1322,14 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
       Size = 100
       Lookup = True
     end
+    object qry4dtCadMat: TDateTimeField
+      FieldName = 'dtCadMat'
+    end
   end
   object ds4: TDataSource
     AutoEdit = False
     DataSet = qry4
-    Left = 328
+    Left = 312
     Top = 160
   end
 end

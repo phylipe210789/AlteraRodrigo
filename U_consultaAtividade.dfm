@@ -22,12 +22,31 @@ object frm_consultaAtividade: Tfrm_consultaAtividade
     Height = 217
     Align = alClient
     DataSource = DS
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'codAtiv'
+        Title.Caption = 'C'#243'digo'
+        Width = 40
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Nome'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Valor'
+        Visible = True
+      end>
   end
   object ToolBar1: TToolBar
     Left = 0
@@ -79,6 +98,8 @@ object frm_consultaAtividade: Tfrm_consultaAtividade
       Width = 75
       Height = 24
       Caption = '&Pesquisar'
+      ImageIndex = 5
+      Images = Icones
       TabOrder = 0
       OnClick = bt_pesqAtividadeClick
     end
@@ -112,7 +133,7 @@ object frm_consultaAtividade: Tfrm_consultaAtividade
     Left = 288
     Top = 176
     Bitmap = {
-      494C01011C00C001580610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011C00C0017C0610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1195,6 +1216,9 @@ object frm_consultaAtividade: Tfrm_consultaAtividade
       FieldName = 'Valor'
       Precision = 9
       Size = 2
+    end
+    object qryCadAtividadecodAtiv: TIntegerField
+      FieldName = 'codAtiv'
     end
   end
 end

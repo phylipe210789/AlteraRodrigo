@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ppCtrls, ppDB, Vcl.Grids, Vcl.DBGrids,
   Data.DB, Data.Win.ADODB, ppDBPipe, ppParameter, ppDesignLayer, ppVar, ppBands,
   ppPrnabl, ppClass, ppCache, ppComm, ppRelatv, ppProd, ppReport, Vcl.StdCtrls,
-  Vcl.DBCtrls;
+  Vcl.DBCtrls, Vcl.ImgList;
 
 type
   Tfrm_relAtividades = class(TForm)
@@ -41,6 +41,7 @@ type
     qry_relAtividadeCodigoAtividade: TAutoIncField;
     qry_relAtividadeNome: TStringField;
     qry_relAtividadeValor: TBCDField;
+    Icones: TImageList;
     procedure bt_geraClick(Sender: TObject);
     procedure br_cancelaClick(Sender: TObject);
     procedure chk_relAtividadesClick(Sender: TObject);
@@ -63,48 +64,52 @@ uses U_DmCadastros;
 
 procedure Tfrm_relAtividades.br_cancelaClick(Sender: TObject);
 begin
-      Close;
+  Close;
 end;
 
 procedure Tfrm_relAtividades.bt_geraClick(Sender: TObject);
 begin
 
   if (not chk_relAtividades.Checked) and VarIsNull(DBCB_relAtividades.KeyValue) then
-   Begin
-     ShowMessage('Selecione um Registro.');
-     DBCB_relAtividades.SetFocus;
-     Exit;
-   end;
+  begin
+    ShowMessage('Selecione um Registro.');
+    DBCB_relAtividades.SetFocus;
+    Exit;
+  end;
 
-   qry_relAtividade.Close;
+  qry_relAtividade.Close;
 
-   if chk_relAtividades.Checked then
-     qry_relAtividade.Parameters.ParamByName('codigoatividade').Value := '%'
-   else
-     qry_relAtividade.Parameters.ParamByName('codigoatividade').Value := DBCB_relAtividades.KeyValue;
+  if chk_relAtividades.Checked then
+    qry_relAtividade.Parameters.ParamByName('codigoatividade').Value := '%'
+  else
+    qry_relAtividade.Parameters.ParamByName('codigoatividade').Value := DBCB_relAtividades.KeyValue;
 
-   qry_relAtividade.Open;
+  qry_relAtividade.Open;
 
-   if qry_relAtividade.IsEmpty then
-     ShowMessage('Não a dados para ser impresso!')
-   else
-      pp_relAtividades.Print;
+  if qry_relAtividade.IsEmpty then
+    ShowMessage('Não a dados para ser impresso!')
+  else
+    pp_relAtividades.Print;
 
 end;
 
 procedure Tfrm_relAtividades.chk_relAtividadesClick(Sender: TObject);
 begin
-      DBCB_relAtividades.Enabled := not TCheckBox(Sender).Checked;
-      lbl_relAtividades.Enabled  := not TCheckBox(Sender).Checked;
+
+  DBCB_relAtividades.Enabled := not TCheckBox(Sender).Checked;
+  lbl_relAtividades.Enabled  := not TCheckBox(Sender).Checked;
 
   if not TCheckBox(Sender).Checked then
-      DBCB_relAtividades.SetFocus;
+    DBCB_relAtividades.SetFocus;
+
 end;
 
 procedure Tfrm_relAtividades.FormCreate(Sender: TObject);
 begin
+
   dmCadastros.qryCadAtividade.Close;
   dmCadastros.qryCadAtividade.Open;
+
 end;
 
 end.

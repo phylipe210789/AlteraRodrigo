@@ -25,6 +25,13 @@ object frm_main: Tfrm_main
     Top = 24
     object MenuSistema: TMenuItem
       Caption = '&Sistema'
+      object MudarUsuario: TMenuItem
+        Caption = 'Mudar Usu'#225'rio'
+        OnClick = MudarUsuarioClick
+      end
+      object N2: TMenuItem
+        Caption = '-'
+      end
       object SistemaBackup: TMenuItem
         Caption = '&Backup'
         OnClick = SistemaBackupClick
@@ -62,6 +69,7 @@ object frm_main: Tfrm_main
     end
     object MenuUsuario: TMenuItem
       Caption = '&Usu'#225'rios'
+      Visible = False
       object UsuarioCadastro: TMenuItem
         Caption = '&Cadastro'
         OnClick = UsuarioCadastroClick

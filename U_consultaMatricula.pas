@@ -44,6 +44,7 @@ type
     qry4socio: TStringField;
     qry4atividade: TStringField;
     ds4: TDataSource;
+    qry4dtCadMat: TDateTimeField;
     procedure bt_cadSocioClick(Sender: TObject);
     procedure bt_altSocioClick(Sender: TObject);
     procedure bt_excSoscioClick(Sender: TObject);
@@ -68,78 +69,76 @@ procedure Tfrm_consultaMatricula.bt_altSocioClick(Sender: TObject);
 begin
 
   if not qry4.Active and qry4.IsEmpty then
-    begin
-      //qryCadSocio.Open;
-      ShowMessage('Não possui dados para alteração.');
-      edit_pesquisa.SetFocus;
-    end
-    else begin
-        qry4.Open;
-        qry4.Edit;
-      with Tfrm_novo_alt_Matricula.Create(Application) do
-      try
-        showmodal;
-      finally
-        free;
-      end;
+  begin
+    //qryCadSocio.Open;
+    ShowMessage('Não possui dados para alteração.');
+    edit_pesquisa.SetFocus;
+  end
+  else begin
+    qry4.Open;
+    qry4.Edit;
+  with Tfrm_novo_alt_Matricula.Create(Application) do
+    try
+      showmodal;
+    finally
+      free;
     end;
+  end;
 
 end;
 
 procedure Tfrm_consultaMatricula.bt_cadSocioClick(Sender: TObject);
 begin
 
-  //if not (qry4.Active)then
-     //qry4.Open;
+//if not (qry4.Active)then
+  //qry4.Open;
 
-   with Tfrm_novo_alt_Matricula.Create(Application) do
-   try
+  with Tfrm_novo_alt_Matricula.Create(Application) do
+    try
       qry4.Open;
       qry4.Insert;
       showmodal;
-   finally
-     free;
-   end;
+    finally
+      free;
+    end;
 
 end;
 
 procedure Tfrm_consultaMatricula.bt_excSoscioClick(Sender: TObject);
-  const
-
-  msg = 'Deseja realmente excluir a matricula do Socio: ';
+const
+  MSG = 'Deseja realmente excluir a matricula do Socio: ';
 
 begin
 
  try
-
   if not qry4.Active and qry4.IsEmpty then
   begin
      ShowMessage('Não possui dados para exclusão.');
      edit_pesquisa.SetFocus;
   end
   else begin
-     qry4.Open;
-     if MessageDlg(msg+ds4.DataSet.FieldByName('socio').AsString+' ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-     qry4.Delete;
+    qry4.Open;
+    if MessageDlg(MSG+ds4.DataSet.FieldByName('socio').AsString+' ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+      qry4.Delete;
   end;
 
  except
-
   MessageDlg('Esse registro possui movimentações e não pode ser excluido', mtError, mbOKCancel, 0);
 
  end;
+
 end;
 
 procedure Tfrm_consultaMatricula.bt_pesqMatClick(Sender: TObject);
 const
-  sql_base =
+  SQL_BASE =
    ' SELECT '+
-   '   M.id_matricula, M.CodigoSocio, M.CodigoAtividade '+
+   '   M.id_matricula, M.CodigoSocio, M.CodigoAtividade, M.dtCadMat '+
    ' FROM '+
    '   Matriculas M '+
-   ' left JOIN '+
+   ' LEFT JOIN '+
    '   Socios S ON S.CodigoSocio = M.CodigoSocio '+
-   ' left JOIN '+
+   ' LEFT JOIN '+
    '   Atividades A ON A.CodigoAtividade = M.CodigoAtividade '+
    ' WHERE ';
 
@@ -147,7 +146,7 @@ begin
 
   qry4.Close;
   qry4.SQL.Clear;
-  qry4.SQL.Add(sql_base);
+  qry4.SQL.Add(SQL_BASE);
 
   case rg_filtros.ItemIndex of
   0:Begin

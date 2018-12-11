@@ -65,6 +65,8 @@ object frm_consultaUsuario: Tfrm_consultaUsuario
       Width = 75
       Height = 24
       Caption = '&Pesquisar'
+      ImageIndex = 5
+      Images = Icones
       TabOrder = 0
       OnClick = bt_pesqLoginClick
     end
@@ -96,6 +98,7 @@ object frm_consultaUsuario: Tfrm_consultaUsuario
     Height = 132
     Align = alClient
     DataSource = dsLogin
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     TabOrder = 2
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -115,6 +118,12 @@ object frm_consultaUsuario: Tfrm_consultaUsuario
         FieldName = 'login'
         Title.Caption = 'Usu'#225'rio'
         Width = 108
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'nivel'
+        Title.Caption = 'Nivel'
         Visible = True
       end>
   end
@@ -139,12 +148,15 @@ object frm_consultaUsuario: Tfrm_consultaUsuario
       FieldName = 'senha'
       Size = 50
     end
+    object qryCadLoginnivel: TIntegerField
+      FieldName = 'nivel'
+    end
   end
   object Icones: TImageList
     Left = 280
     Top = 94
     Bitmap = {
-      494C01011C00C001680610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011C00C001800610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
