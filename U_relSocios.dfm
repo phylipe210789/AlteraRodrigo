@@ -144,6 +144,15 @@ object frm_relSocios: Tfrm_relSocios
       DisplayWidth = 11
       Position = 9
     end
+    object ppDB_relSociosppField11: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'codSoc'
+      FieldName = 'codSoc'
+      FieldLength = 0
+      DataType = dtInteger
+      DisplayWidth = 10
+      Position = 10
+    end
   end
   object pp_relSocios: TppReport
     AutoStop = False
@@ -449,18 +458,18 @@ object frm_relSocios: Tfrm_relSocios
       object ppDBText1: TppDBText
         DesignLayer = ppDesignLayer1
         UserName = 'DBText1'
-        DataField = 'CodigoSocio'
+        DataField = 'codSoc'
         DataPipeline = ppDB_relSocios
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
         Font.Size = 8
-        Font.Style = [fsBold]
+        Font.Style = []
         TextAlignment = taCentered
         Transparent = True
         DataPipelineName = 'ppDB_relSocios'
         mmHeight = 4498
-        mmLeft = 0
+        mmLeft = 1852
         mmTop = 794
         mmWidth = 12700
         BandType = 4
@@ -475,7 +484,7 @@ object frm_relSocios: Tfrm_relSocios
         Font.Color = clBlack
         Font.Name = 'Arial'
         Font.Size = 8
-        Font.Style = [fsBold]
+        Font.Style = []
         Transparent = True
         DataPipelineName = 'ppDB_relSocios'
         mmHeight = 4498
@@ -494,7 +503,7 @@ object frm_relSocios: Tfrm_relSocios
         Font.Color = clBlack
         Font.Name = 'Arial'
         Font.Size = 8
-        Font.Style = [fsBold]
+        Font.Style = []
         Transparent = True
         DataPipelineName = 'ppDB_relSocios'
         mmHeight = 4498
@@ -513,7 +522,7 @@ object frm_relSocios: Tfrm_relSocios
         Font.Color = clBlack
         Font.Name = 'Arial'
         Font.Size = 8
-        Font.Style = [fsBold]
+        Font.Style = []
         Transparent = True
         DataPipelineName = 'ppDB_relSocios'
         mmHeight = 4498
@@ -532,7 +541,7 @@ object frm_relSocios: Tfrm_relSocios
         Font.Color = clBlack
         Font.Name = 'Arial'
         Font.Size = 8
-        Font.Style = [fsBold]
+        Font.Style = []
         Transparent = True
         DataPipelineName = 'ppDB_relSocios'
         mmHeight = 4498
@@ -551,12 +560,12 @@ object frm_relSocios: Tfrm_relSocios
         Font.Color = clBlack
         Font.Name = 'Arial'
         Font.Size = 8
-        Font.Style = [fsBold]
+        Font.Style = []
         TextAlignment = taCentered
         Transparent = True
         DataPipelineName = 'ppDB_relSocios'
         mmHeight = 4498
-        mmLeft = 210873
+        mmLeft = 210610
         mmTop = 794
         mmWidth = 7938
         BandType = 4
@@ -571,7 +580,7 @@ object frm_relSocios: Tfrm_relSocios
         Font.Color = clBlack
         Font.Name = 'Arial'
         Font.Size = 8
-        Font.Style = [fsBold]
+        Font.Style = []
         Transparent = True
         DataPipelineName = 'ppDB_relSocios'
         mmHeight = 4498
@@ -590,7 +599,7 @@ object frm_relSocios: Tfrm_relSocios
         Font.Color = clBlack
         Font.Name = 'Arial'
         Font.Size = 8
-        Font.Style = [fsBold]
+        Font.Style = []
         Transparent = True
         DataPipelineName = 'ppDB_relSocios'
         mmHeight = 4498
@@ -609,7 +618,7 @@ object frm_relSocios: Tfrm_relSocios
         Font.Color = clBlack
         Font.Name = 'Arial'
         Font.Size = 8
-        Font.Style = [fsBold]
+        Font.Style = []
         TextAlignment = taCentered
         Transparent = True
         DataPipelineName = 'ppDB_relSocios'
@@ -740,12 +749,15 @@ object frm_relSocios: Tfrm_relSocios
       FieldName = 'CPF'
       Size = 11
     end
+    object qry_relSocioscodSoc: TIntegerField
+      FieldName = 'codSoc'
+    end
   end
   object Icones: TImageList
     Left = 12
     Top = 8
     Bitmap = {
-      494C01011C00C001C00610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011C00C001C80610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

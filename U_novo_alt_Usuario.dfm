@@ -101,7 +101,7 @@ object frm_novo_alt_Usuario: Tfrm_novo_alt_Usuario
     Left = 237
     Top = 8
     Bitmap = {
-      494C01011C00C001BC0610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011C00C001C40610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1163,5 +1163,26 @@ object frm_novo_alt_Usuario: Tfrm_novo_alt_Usuario
       8007C007000000008007C007000000008007E00F000000008007E01F00000000
       8007E01F00000000FFFFFFFF0000000000000000000000000000000000000000
       000000000000}
+  end
+  object dsContador: TDataSource
+    DataSet = qryContCodigo
+    Left = 217
+    Top = 120
+  end
+  object qryContCodigo: TADOQuery
+    Connection = DM.con
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'SELECT'
+      '  (MAX(codLog) + 1) AS ValorMax'
+      'FROM '
+      '  Login')
+    Left = 145
+    Top = 120
+    object qryContCodigoValorMax: TIntegerField
+      FieldName = 'ValorMax'
+      ReadOnly = True
+    end
   end
 end

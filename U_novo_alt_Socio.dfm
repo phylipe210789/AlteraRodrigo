@@ -31,14 +31,14 @@ object frm_novo_alt_Socio: Tfrm_novo_alt_Socio
     Caption = 'Cidade:'
   end
   object lb_cepSocio: TLabel
-    Left = 387
+    Left = 417
     Top = 88
     Width = 23
     Height = 13
     Caption = 'CEP:'
   end
   object lb_ufSocio: TLabel
-    Left = 300
+    Left = 330
     Top = 88
     Width = 25
     Height = 13
@@ -144,7 +144,7 @@ object frm_novo_alt_Socio: Tfrm_novo_alt_Socio
     TabOrder = 6
   end
   object DBedit_cepSocio: TDBEdit
-    Left = 420
+    Left = 450
     Top = 85
     Width = 121
     Height = 21
@@ -153,7 +153,7 @@ object frm_novo_alt_Socio: Tfrm_novo_alt_Socio
     TabOrder = 8
   end
   object DBedit_ufSocio: TDBEdit
-    Left = 333
+    Left = 361
     Top = 85
     Width = 22
     Height = 21
@@ -216,7 +216,7 @@ object frm_novo_alt_Socio: Tfrm_novo_alt_Socio
     Left = 208
     Top = 120
     Bitmap = {
-      494C01011C00C001B80610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011C00C001C00610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

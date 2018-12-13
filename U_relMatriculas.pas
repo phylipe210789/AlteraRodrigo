@@ -55,6 +55,7 @@ type
     Icones: TImageList;
     ppLine3: TppLine;
     ppLine4: TppLine;
+    qry_relMatriculascodMat: TIntegerField;
     procedure chk_relSociosClick(Sender: TObject);
     procedure chk_relAtividadesClick(Sender: TObject);
     procedure br_cancelaClick(Sender: TObject);

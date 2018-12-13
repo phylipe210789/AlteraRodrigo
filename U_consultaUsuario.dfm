@@ -108,7 +108,7 @@ object frm_consultaUsuario: Tfrm_consultaUsuario
     Columns = <
       item
         Expanded = False
-        FieldName = 'id_user'
+        FieldName = 'codLog'
         Title.Caption = 'C'#243'digo'
         Width = 46
         Visible = True
@@ -132,14 +132,9 @@ object frm_consultaUsuario: Tfrm_consultaUsuario
     CursorType = ctStatic
     Parameters = <>
     SQL.Strings = (
-      'select * from login'
-      '')
+      'select * from login')
     Left = 94
     Top = 94
-    object qryCadLoginid_user: TAutoIncField
-      FieldName = 'id_user'
-      ReadOnly = True
-    end
     object qryCadLoginlogin: TStringField
       FieldName = 'login'
       Size = 15
@@ -151,12 +146,19 @@ object frm_consultaUsuario: Tfrm_consultaUsuario
     object qryCadLoginnivel: TIntegerField
       FieldName = 'nivel'
     end
+    object qryCadLogincodLog: TIntegerField
+      FieldName = 'codLog'
+    end
+    object qryCadLoginid_user: TAutoIncField
+      FieldName = 'id_user'
+      ReadOnly = True
+    end
   end
   object Icones: TImageList
     Left = 280
     Top = 94
     Bitmap = {
-      494C01011C00C001800610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011C00C0018C0610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

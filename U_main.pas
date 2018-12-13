@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Data.DB, Data.Win.ADODB,
-  Vcl.StdCtrls;
+  Vcl.StdCtrls, Vcl.ComCtrls;
 
 type
   Tfrm_main = class(TForm)
@@ -32,6 +32,8 @@ type
     RelatorioUsuario: TMenuItem;
     N2: TMenuItem;
     MudarUsuario: TMenuItem;
+    ProgressBar1: TProgressBar;
+    StatusBar1: TStatusBar;
     procedure SistemaFinalizarClick(Sender: TObject);
     procedure HelpSobreClick(Sender: TObject);
     procedure PopupHelpSobreClick(Sender: TObject);
@@ -48,6 +50,8 @@ type
     procedure UsuarioCadastroClick(Sender: TObject);
     procedure RelatorioUsuarioClick(Sender: TObject);
     procedure MudarUsuarioClick(Sender: TObject);
+    procedure StatusBar1DrawPanel(StatusBar: TStatusBar; Panel: TStatusPanel;
+      const Rect: TRect);
 
   private
     { Private declarations }
@@ -81,6 +85,7 @@ procedure Tfrm_main.FormClose(Sender: TObject; var Action: TCloseAction);
 var
   ADOCommand : TADOCommand;
   CLIENTE : String;
+  i : integer;
 
 begin
 
@@ -93,7 +98,20 @@ begin
     ADOCommand.ConnectionString := DM.con.ConnectionString;
     ADOCommand.CommandText := 'BACKUP DATABASE '+CLIENTE+' TO DISK =''C:\Backup\Backup Clube.bak''';
     ADOCommand.Execute;
+
+    StatusBar1.Visible := True;
+
+      for I := ProgressBar1.Min to ProgressBar1.Max do
+      begin
+        ProgressBar1.Position := I;
+        StatusBar1.Repaint;
+        Sleep(10);
+      end;
+        Sleep(300);
+        ProgressBar1.Position := ProgressBar1.Min;
+        StatusBar1.Repaint;
   end;
+
     showmessage('Backup Realizado e salvo em C:\Backup');
     Application.Terminate
 
@@ -219,16 +237,33 @@ procedure Tfrm_main.SistemaBackupClick(Sender: TObject);
 var
   ADOCommand : TADOCommand;
   CLIENTE : String;
+  i : integer;
+
 begin
 
   CLIENTE := 'Clube';
   ADOCommand := TADOCommand.Create(nil);
+
   with ADOCommand do begin
     ADOCommand.ConnectionString := DM.con.ConnectionString;
     ADOCommand.CommandText := 'BACKUP DATABASE '+CLIENTE+' TO DISK =''C:\Backup\Backup Clube.bak''';
     ADOCommand.Execute;
+
+    StatusBar1.Visible := True;
+
+    for I := ProgressBar1.Min to ProgressBar1.Max do
+    begin
+      ProgressBar1.Position := I;
+      StatusBar1.Repaint;
+      Sleep(10);
+    end;
+      Sleep(300);
+      ProgressBar1.Position := ProgressBar1.Min;
+      StatusBar1.Repaint;
+
   end;
 
+    StatusBar1.Visible := False;
     showmessage('Backup Realizado e salvo em C:\Backup');
 
 end;
@@ -254,6 +289,19 @@ begin
  finally
     frm_consultaSocios.Free;
  end;
+
+end;
+
+procedure Tfrm_main.StatusBar1DrawPanel(StatusBar: TStatusBar;
+  Panel: TStatusPanel; const Rect: TRect);
+begin
+
+  if panel.index = 1 then
+  begin
+    ProgressBar1.Width := Rect.Right - Rect.Left +1;
+    ProgressBar1.Height := Rect.Bottom - Rect.Top +1;
+    ProgressBar1.PaintTo(StatusBar.Canvas.Handle, Rect.Left, Rect.Top);
+  end;
 
 end;
 

@@ -107,6 +107,9 @@ object frm_relUsuario: Tfrm_relUsuario
     object qry_relUsuarionivel: TIntegerField
       FieldName = 'nivel'
     end
+    object qry_relUsuariocodLog: TIntegerField
+      FieldName = 'codLog'
+    end
   end
   object ds_relUsuario: TDataSource
     DataSet = qry_relUsuario
@@ -148,6 +151,15 @@ object frm_relUsuario: Tfrm_relUsuario
       DataType = dtInteger
       DisplayWidth = 10
       Position = 3
+    end
+    object ppDB_relUsuarioppField5: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'codLog'
+      FieldName = 'codLog'
+      FieldLength = 0
+      DataType = dtInteger
+      DisplayWidth = 10
+      Position = 4
     end
   end
   object pp_relUsuario: TppReport
@@ -319,13 +331,13 @@ object frm_relUsuario: Tfrm_relUsuario
       object ppDBText1: TppDBText
         DesignLayer = ppDesignLayer1
         UserName = 'DBText1'
-        DataField = 'id_user'
+        DataField = 'codLog'
         DataPipeline = ppDB_relUsuario
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
         Font.Size = 10
-        Font.Style = [fsBold]
+        Font.Style = []
         TextAlignment = taCentered
         Transparent = True
         DataPipelineName = 'ppDB_relUsuario'
@@ -345,7 +357,7 @@ object frm_relUsuario: Tfrm_relUsuario
         Font.Color = clBlack
         Font.Name = 'Arial'
         Font.Size = 10
-        Font.Style = [fsBold]
+        Font.Style = []
         Transparent = True
         DataPipelineName = 'ppDB_relUsuario'
         mmHeight = 4498
@@ -446,7 +458,7 @@ object frm_relUsuario: Tfrm_relUsuario
           Font.Color = clBlack
           Font.Name = 'Arial'
           Font.Size = 10
-          Font.Style = [fsBold]
+          Font.Style = []
           Transparent = True
           DataPipelineName = 'ppDB_relUsuario'
           mmHeight = 4233
@@ -493,7 +505,7 @@ object frm_relUsuario: Tfrm_relUsuario
     Left = 175
     Top = 64
     Bitmap = {
-      494C01011C00C001D00610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011C00C001D40610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

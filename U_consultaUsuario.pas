@@ -21,10 +21,11 @@ type
     edit_pesquisa: TEdit;
     rg_filtros: TRadioGroup;
     DBGrid_Login: TDBGrid;
-    qryCadLoginid_user: TAutoIncField;
     qryCadLoginlogin: TStringField;
     qryCadLoginsenha: TStringField;
     qryCadLoginnivel: TIntegerField;
+    qryCadLogincodLog: TIntegerField;
+    qryCadLoginid_user: TAutoIncField;
     procedure bt_cadUsuarioClick(Sender: TObject);
     procedure bt_excUsuarioClick(Sender: TObject);
     procedure bt_altUsuarioClick(Sender: TObject);
@@ -111,7 +112,7 @@ procedure Tfrm_consultaUsuario.bt_pesqLoginClick(Sender: TObject);
 const
   SQL_BASE =
     ' SELECT '+
-    '   ID_USER, LOGIN, SENHA, NIVEL '+
+    '   ID_USER, CODLOG, LOGIN, SENHA, NIVEL '+
     ' FROM '+
     '   LOGIN '+
     ' WHERE ';
@@ -123,7 +124,7 @@ begin
 
   case rg_filtros.ItemIndex of
   0:Begin
-      qryCadLogin.SQL.Add(' convert(varchar(10), id_user) like :id_user order by id_user');
+      qryCadLogin.SQL.Add(' convert(varchar(10), codLog) like :codLog order by codLog');
       qryCadLogin.Parameters[0].Value := edit_pesquisa.Text+'%';
     end;
   1:Begin

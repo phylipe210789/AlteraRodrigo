@@ -255,13 +255,13 @@ object frm_relAtividades: Tfrm_relAtividades
       object ppDBText1: TppDBText
         DesignLayer = ppDesignLayer1
         UserName = 'DBText1'
-        DataField = 'CodigoAtividade'
+        DataField = 'codAtiv'
         DataPipeline = ppDB_relAtividades
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
         Font.Size = 10
-        Font.Style = [fsBold]
+        Font.Style = []
         TextAlignment = taCentered
         Transparent = True
         DataPipelineName = 'ppDB_relAtividades'
@@ -281,7 +281,7 @@ object frm_relAtividades: Tfrm_relAtividades
         Font.Color = clBlack
         Font.Name = 'Arial'
         Font.Size = 10
-        Font.Style = [fsBold]
+        Font.Style = []
         Transparent = True
         DataPipelineName = 'ppDB_relAtividades'
         mmHeight = 4498
@@ -296,12 +296,12 @@ object frm_relAtividades: Tfrm_relAtividades
         UserName = 'DBText3'
         DataField = 'Valor'
         DataPipeline = ppDB_relAtividades
-        DisplayFormat = '#,0.00;-#,0.00'
+        DisplayFormat = '$#,0.00;-$#,0.00'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
         Font.Size = 10
-        Font.Style = [fsBold]
+        Font.Style = []
         Transparent = True
         DataPipelineName = 'ppDB_relAtividades'
         mmHeight = 4498
@@ -395,6 +395,15 @@ object frm_relAtividades: Tfrm_relAtividades
       DisplayWidth = 10
       Position = 2
     end
+    object ppDB_relAtividadesppField4: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'codAtiv'
+      FieldName = 'codAtiv'
+      FieldLength = 0
+      DataType = dtInteger
+      DisplayWidth = 10
+      Position = 3
+    end
   end
   object ds_relAtividades: TDataSource
     DataSet = qry_relAtividade
@@ -436,12 +445,15 @@ object frm_relAtividades: Tfrm_relAtividades
       Precision = 9
       Size = 2
     end
+    object qry_relAtividadecodAtiv: TIntegerField
+      FieldName = 'codAtiv'
+    end
   end
   object Icones: TImageList
     Left = 276
     Top = 64
     Bitmap = {
-      494C01011C00C001C80610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011C00C001CC0610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

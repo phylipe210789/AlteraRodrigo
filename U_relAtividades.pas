@@ -42,6 +42,7 @@ type
     qry_relAtividadeNome: TStringField;
     qry_relAtividadeValor: TBCDField;
     Icones: TImageList;
+    qry_relAtividadecodAtiv: TIntegerField;
     procedure bt_geraClick(Sender: TObject);
     procedure br_cancelaClick(Sender: TObject);
     procedure chk_relAtividadesClick(Sender: TObject);

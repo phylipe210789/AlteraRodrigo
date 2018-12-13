@@ -39,6 +39,8 @@ implementation
 
 {$R *.dfm}
 
+uses U_DmValida;
+
 procedure Tfrm_novo_alt_Atividade.bt_cancelSocioClick(Sender: TObject);
 begin
   if DS.State in [dsInsert, dsEdit] then
@@ -48,7 +50,22 @@ begin
 end;
 
 procedure Tfrm_novo_alt_Atividade.bt_salvarSocioClick(Sender: TObject);
+const
+  SQL_VALIDA =
+    ' SELECT       '+
+    '   *          '+
+    ' FROM         '+
+    '   Atividades '+
+    ' WHERE        '+
+    '   Nome = ''%s'' AND CodigoAtividade <> %d ';
+
+var
+  SQL : String;
+
 begin
+
+  SQL := Format(SQL_VALIDA, [DBedit_nomeAtividade.Text,
+                             ds.DataSet.FieldByName('CodigoAtividade').AsInteger]);
 
   if DBedit_nomeAtividade.Text = '' then
   begin
@@ -59,6 +76,11 @@ begin
   begin
     ShowMessage('O campo "Valor" não pode ficar vazio!');
     DBedit_valorAtividade.SetFocus;
+  end
+  else if dmValida.Validacao(SQL) then
+  begin
+    ShowMessage('Já existe uma Atividade com esse nome!');
+    DBedit_nomeAtividade.SetFocus;
   end
   else if DS.State in [dsInsert] then
   begin

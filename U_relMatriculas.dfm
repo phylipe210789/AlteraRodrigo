@@ -108,7 +108,7 @@ object frm_relMatriculas: Tfrm_relMatriculas
       FieldName = 'id_matricula'
       FieldLength = 0
       DataType = dtLongint
-      DisplayWidth = 10
+      DisplayWidth = 0
       Position = 0
     end
     object ppDB_relMatriculasppField2: TppField
@@ -133,6 +133,15 @@ object frm_relMatriculas: Tfrm_relMatriculas
       FieldLength = 25
       DisplayWidth = 25
       Position = 3
+    end
+    object ppDB_relMatriculasppField5: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'codMat'
+      FieldName = 'codMat'
+      FieldLength = 0
+      DataType = dtInteger
+      DisplayWidth = 10
+      Position = 4
     end
   end
   object pp_relMatriculas: TppReport
@@ -251,7 +260,7 @@ object frm_relMatriculas: Tfrm_relMatriculas
       object ppLabel5: TppLabel
         DesignLayer = ppDesignLayer1
         UserName = 'Label5'
-        Caption = 'C'#243'dido da Matricula'
+        Caption = 'C'#243'd. da Matricula'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clRed
         Font.Name = 'Arial'
@@ -259,10 +268,10 @@ object frm_relMatriculas: Tfrm_relMatriculas
         Font.Style = [fsBold]
         FormField = False
         Transparent = True
-        mmHeight = 4233
+        mmHeight = 4234
         mmLeft = 9790
-        mmTop = 9257
-        mmWidth = 33866
+        mmTop = 9260
+        mmWidth = 29633
         BandType = 0
         LayerName = Foreground
       end
@@ -324,7 +333,7 @@ object frm_relMatriculas: Tfrm_relMatriculas
       object ppDBText1: TppDBText
         DesignLayer = ppDesignLayer1
         UserName = 'DBText1'
-        DataField = 'id_matricula'
+        DataField = 'codMat'
         DataPipeline = ppDB_relMatriculas
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
@@ -580,8 +589,8 @@ object frm_relMatriculas: Tfrm_relMatriculas
     SQL.Strings = (
       'SELECT '
       
-        '       M.id_matricula, S.Nome as socio, A.Nome as atividade, A.V' +
-        'alor '
+        '      M.codMat, M.id_matricula, S.Nome as socio, A.Nome as ativi' +
+        'dade, A.Valor '
       'FROM '
       '       Matriculas M'
       'INNER JOIN '
@@ -614,12 +623,15 @@ object frm_relMatriculas: Tfrm_relMatriculas
       FieldName = 'atividade'
       Size = 25
     end
+    object qry_relMatriculascodMat: TIntegerField
+      FieldName = 'codMat'
+    end
   end
   object Icones: TImageList
     Left = 7
     Top = 8
     Bitmap = {
-      494C01011C00C001C40610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011C00C001C80610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

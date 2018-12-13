@@ -54,6 +54,8 @@ implementation
 
 {$R *.dfm}
 
+uses U_DmValida;
+
 procedure Tfrm_novo_alt_Socio.bt_cancelSocioClick(Sender: TObject);
 begin
       if DS.State in [dsInsert, dsEdit] then
@@ -62,7 +64,25 @@ begin
 end;
 
 procedure Tfrm_novo_alt_Socio.bt_salvarSocioClick(Sender: TObject);
+const
+  SQL_VALIDA =
+    ' SELECT       '+
+    '   *          '+
+    ' FROM         '+
+    '   Socios '+
+    ' WHERE        '+
+    '   %s ';
+
+var
+  SQL, SQL1 : String;
+
 begin
+
+  SQL := Format(SQL_VALIDA, ['Nome =  '+QuotedStr(DBedit_nomeSocio.Text)+' AND CodigoSocio <> '+
+                             InttoStr(ds.DataSet.FieldByName('CodigoSocio').AsInteger)]);
+
+  SQL1 := Format(SQL_VALIDA, ['CPF = '+QuotedStr(DBedit_cpfSocio.Text)+' AND CodigoSocio <> '+
+                              InttoStr(ds.DataSet.FieldByName('CodigoSocio').AsInteger)]);
 
   if DBedit_nomeSocio.Text = '' then
   begin
@@ -108,6 +128,16 @@ begin
   begin
     ShowMessage('O campo "CEP" não pode ficar vazio!');
     DBedit_cepSocio.SetFocus;
+  end
+  else if dmValida.Validacao(SQL) then
+  begin
+    ShowMessage('Já existe um Socio com esse nome!');
+    DBedit_nomeSocio.SetFocus;
+  end
+  else if dmValida.Validacao(SQL1) then
+  begin
+    ShowMessage('Já existe um Socio com esse CPF!');
+    DBedit_cpfSocio.SetFocus;
   end
   else if DS.State in [dsInsert] then
   begin

@@ -20,6 +20,36 @@ object frm_main: Tfrm_main
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
+  object ProgressBar1: TProgressBar
+    Left = 321
+    Top = 241
+    Width = 504
+    Height = 32
+    DoubleBuffered = True
+    ParentDoubleBuffered = False
+    TabOrder = 0
+    Visible = False
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Top = 673
+    Width = 1094
+    Height = 19
+    Panels = <
+      item
+        Text = 'Backup sendo realizado, aguarde!'
+        Width = 180
+      end
+      item
+        Style = psOwnerDraw
+        Width = 1000
+      end>
+    Visible = False
+    OnDrawPanel = StatusBar1DrawPanel
+    ExplicitLeft = 312
+    ExplicitTop = 504
+    ExplicitWidth = 0
+  end
   object MenuPrincipal: TMainMenu
     Left = 24
     Top = 24

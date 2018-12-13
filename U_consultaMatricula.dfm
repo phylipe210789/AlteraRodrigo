@@ -108,7 +108,7 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
     Columns = <
       item
         Expanded = False
-        FieldName = 'id_matricula'
+        FieldName = 'codMat'
         Title.Caption = 'C'#243'd. Matricula'
         Visible = True
       end
@@ -136,7 +136,7 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
     Left = 416
     Top = 104
     Bitmap = {
-      494C01011C00C001C40610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011C00C001D00610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1200,7 +1200,6 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
       000000000000}
   end
   object qry2: TADOQuery
-    Active = True
     Connection = DM.con
     CursorType = ctStatic
     Parameters = <>
@@ -1258,7 +1257,6 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
     Top = 160
   end
   object qry3: TADOQuery
-    Active = True
     Connection = DM.con
     CursorType = ctStatic
     Parameters = <>
@@ -1288,10 +1286,6 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
       'select * from matriculas')
     Left = 312
     Top = 104
-    object qry4id_matricula: TAutoIncField
-      FieldName = 'id_matricula'
-      ReadOnly = True
-    end
     object qry4CodigoSocio: TIntegerField
       FieldName = 'CodigoSocio'
     end
@@ -1324,6 +1318,13 @@ object frm_consultaMatricula: Tfrm_consultaMatricula
     end
     object qry4dtCadMat: TDateTimeField
       FieldName = 'dtCadMat'
+    end
+    object qry4codMat: TIntegerField
+      FieldName = 'codMat'
+    end
+    object qry4id_matricula: TAutoIncField
+      FieldName = 'id_matricula'
+      ReadOnly = True
     end
   end
   object ds4: TDataSource

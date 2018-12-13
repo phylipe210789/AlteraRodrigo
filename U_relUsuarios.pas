@@ -47,6 +47,7 @@ type
     ppGroupFooterBand1: TppGroupFooterBand;
     ppLabel4: TppLabel;
     ppLine3: TppLine;
+    qry_relUsuariocodLog: TIntegerField;
     procedure bt_geraClick(Sender: TObject);
     procedure br_cancelaClick(Sender: TObject);
     procedure chk_relUsuarioClick(Sender: TObject);

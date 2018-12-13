@@ -89,7 +89,7 @@ object frm_novo_alt_Matricula: Tfrm_novo_alt_Matricula
     Top = 27
     Width = 24
     Height = 21
-    DataField = 'id_matricula'
+    DataField = 'codMat'
     DataSource = ds4
     Enabled = False
     TabOrder = 4
@@ -111,10 +111,10 @@ object frm_novo_alt_Matricula: Tfrm_novo_alt_Matricula
     Top = 72
   end
   object Icones: TImageList
-    Left = 32
-    Top = 69
+    Left = 16
+    Top = 61
     Bitmap = {
-      494C01011C00C001B40610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011C00C001BC0610001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1176,5 +1176,26 @@ object frm_novo_alt_Matricula: Tfrm_novo_alt_Matricula
       8007C007000000008007C007000000008007E00F000000008007E01F00000000
       8007E01F00000000FFFFFFFF0000000000000000000000000000000000000000
       000000000000}
+  end
+  object qryContCodigo: TADOQuery
+    Connection = DM.con
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'SELECT'
+      '  (MAX(codMat) + 1) AS ValorMax'
+      'FROM '
+      '  MATRICULAS')
+    Left = 78
+    Top = 29
+    object qryContCodigoValorMax: TIntegerField
+      FieldName = 'ValorMax'
+      ReadOnly = True
+    end
+  end
+  object dsContador: TDataSource
+    DataSet = qryContCodigo
+    Left = 80
+    Top = 77
   end
 end

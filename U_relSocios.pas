@@ -61,6 +61,7 @@ type
     br_cancela: TButton;
     lbl_relSocios: TLabel;
     Icones: TImageList;
+    qry_relSocioscodSoc: TIntegerField;
     procedure chk_relSociosClick(Sender: TObject);
     procedure bt_geraClick(Sender: TObject);
     procedure br_cancelaClick(Sender: TObject);

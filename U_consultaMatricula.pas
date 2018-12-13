@@ -38,13 +38,14 @@ type
     qry3Nome: TStringField;
     qry3Valor: TBCDField;
     qry4: TADOQuery;
-    qry4id_matricula: TAutoIncField;
     qry4CodigoSocio: TIntegerField;
     qry4CodigoAtividade: TIntegerField;
     qry4socio: TStringField;
     qry4atividade: TStringField;
     ds4: TDataSource;
     qry4dtCadMat: TDateTimeField;
+    qry4codMat: TIntegerField;
+    qry4id_matricula: TAutoIncField;
     procedure bt_cadSocioClick(Sender: TObject);
     procedure bt_altSocioClick(Sender: TObject);
     procedure bt_excSoscioClick(Sender: TObject);
@@ -133,7 +134,7 @@ procedure Tfrm_consultaMatricula.bt_pesqMatClick(Sender: TObject);
 const
   SQL_BASE =
    ' SELECT '+
-   '   M.id_matricula, M.CodigoSocio, M.CodigoAtividade, M.dtCadMat '+
+   '   M.id_matricula, M.codMat, M.CodigoSocio, M.CodigoAtividade, M.dtCadMat '+
    ' FROM '+
    '   Matriculas M '+
    ' LEFT JOIN '+
@@ -150,7 +151,7 @@ begin
 
   case rg_filtros.ItemIndex of
   0:Begin
-      qry4.SQL.Add(' convert(varchar(10),M.id_matricula) like :id_matricula order by M.id_matricula');
+      qry4.SQL.Add(' convert(varchar(10),M.codMat) like :codMat order by M.codMat');
       qry4.Parameters[0].Value := edit_pesquisa.Text+'%';
     end;
   1:Begin

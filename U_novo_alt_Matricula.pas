@@ -21,6 +21,9 @@ type
     DBedit_codSocio: TDBEdit;
     lb_codSocio: TLabel;
     Icones: TImageList;
+    qryContCodigo: TADOQuery;
+    qryContCodigoValorMax: TIntegerField;
+    dsContador: TDataSource;
     procedure FormCreate(Sender: TObject);
     procedure bt_salvarSocioClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -38,6 +41,8 @@ implementation
 
 {$R *.dfm}
 
+uses U_DmValida;
+
 procedure Tfrm_novo_alt_Matricula.bt_cancelSocioClick(Sender: TObject);
 begin
 
@@ -48,9 +53,27 @@ begin
 end;
 
 procedure Tfrm_novo_alt_Matricula.bt_salvarSocioClick(Sender: TObject);
+const
+  SQL_VALIDA =
+    ' SELECT '+
+    '   M.codMat, M.CodigoSocio, M.CodigoAtividade, M.dtCadMat '+
+    ' FROM '+
+    '   Matriculas M '+
+    ' LEFT JOIN '+
+    '   Socios S ON S.CodigoSocio = M.CodigoSocio '+
+    ' LEFT JOIN '+
+    '   Atividades A ON A.CodigoAtividade = M.CodigoAtividade '+
+    ' WHERE (S.Nome = ''%s'' AND A.Nome = ''%s'') AND id_matricula <> %d ';
+
+var
+  SQL : String;
+
 begin
 
   ds4.DataSet.FieldByName('dtCadMat').AsString := DatetoStr(date);
+
+  SQL := Format(SQL_VALIDA, [DBLookupComboBox1.Text, DBLookupComboBox2.Text,
+                            ds4.DataSet.FieldByName('id_matricula').AsInteger]);
 
   if DBLookupComboBox1.Text = '' then
   begin
@@ -62,9 +85,17 @@ begin
     ShowMessage('A seleção da "Atividade" não pode ficar vazia!');
     DBLookupComboBox2.SetFocus;
   end
+  else if dmValida.Validacao(SQL) then
+  begin
+    ShowMessage('Já existe uma matricula com esses dados!');
+    DBLookupComboBox1.SetFocus;
+  end
   else if ds4.State in [dsInsert] then
   begin
+    qryContCodigo.Open;
+    ds4.DataSet.FieldByName('codMat').Value := qryContCodigoValorMax.Value;
     ds4.DataSet.Post;
+    qryContCodigo.Close;
     ShowMessage('Cadastro Realizado com Sucesso!');
     Close;
   end
