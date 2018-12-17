@@ -23,7 +23,7 @@ object frm_main: Tfrm_main
   object ProgressBar1: TProgressBar
     Left = 321
     Top = 241
-    Width = 504
+    Width = 512
     Height = 32
     DoubleBuffered = True
     ParentDoubleBuffered = False
@@ -46,9 +46,6 @@ object frm_main: Tfrm_main
       end>
     Visible = False
     OnDrawPanel = StatusBar1DrawPanel
-    ExplicitLeft = 312
-    ExplicitTop = 504
-    ExplicitWidth = 0
   end
   object MenuPrincipal: TMainMenu
     Left = 24
