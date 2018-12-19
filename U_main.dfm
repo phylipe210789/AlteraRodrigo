@@ -21,9 +21,9 @@ object frm_main: Tfrm_main
   PixelsPerInch = 96
   TextHeight = 13
   object ProgressBar1: TProgressBar
-    Left = 321
+    Left = 320
     Top = 241
-    Width = 512
+    Width = 513
     Height = 32
     DoubleBuffered = True
     ParentDoubleBuffered = False
